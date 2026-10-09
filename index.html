@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dashboard Sekolah Digital UPTD SPF SD Negeri Lanas 1</title>
+<title>Dashboard Sekolahku Cloud Based School UPTD SPF SD Negeri Lanas 1</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;800&display=swap">
 <style>
 :root{--bg:#e9f5ff;--card:#fff;--ink:#1d2b4f;--mut:#56638a;--bd:#1d2b4f;--sh:#1d2b4f;--side:#1d2b4f;--mint:#9be8c4;--sun:#ffd666;--pink:#ffb3cf;--lav:#cdc3ff;--sky:#a6d8ff;--warn:#a85d00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -27,7 +27,10 @@ nav button:hover{background:#ffffff1c}
 nav button.on{background:var(--sun);color:#1d2b4f;font-weight:800;border-color:#fff;box-shadow:3px 3px 0 #ff9fc0}
 main{padding:24px;min-width:0}
 header.top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:22px}
-h1{font-size:clamp(24px,3.4vw,34px);margin:0;color:var(--ink);font-weight:800;line-height:1.1}
+h1{font-size:clamp(24px,3.6vw,38px);margin:0;color:#ffd666;font-weight:800;line-height:1.12;letter-spacing:.01em;-webkit-text-stroke:.055em var(--bd);paint-order:stroke fill;text-shadow:0.025em 0.025em 0 var(--sh),0.050em 0.050em 0 var(--sh),0.075em 0.075em 0 var(--sh),0.100em 0.100em 0 var(--sh),0.125em 0.125em 0 var(--sh),0.150em 0.150em 0 var(--sh),.2em .3em .45em rgba(0,0,0,.28)}
+.cbs{display:inline-flex;align-items:center;gap:7px;margin:10px 0 2px 3px;padding:3px 14px 3px 9px;border:2px solid var(--bd);border-radius:999px;background:var(--sky);color:var(--ink);font:800 12px/1.5 'Baloo 2','Nunito',system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;box-shadow:3px 3px 0 var(--sh)}
+.cbs svg{width:19px;height:19px;fill:var(--sun);stroke:var(--bd);stroke-width:1.7;stroke-linejoin:round}
+@media(prefers-reduced-motion:no-preference){h1{transition:transform .2s}h1:hover{transform:translate(-2px,-2px)}}
 .sub{color:var(--mut);font-size:14px;margin-top:4px}
 .user{display:flex;gap:10px;align-items:center;font-size:14px}
 .btn{background:var(--mint);color:var(--ink);border:2.5px solid var(--bd);border-radius:999px;padding:9px 18px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;text-align:center;box-shadow:3px 3px 0 var(--sh);transition:transform .1s,box-shadow .1s}
@@ -101,7 +104,8 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
   <div style="display:flex;gap:12px;align-items:center">
    <button class="btn ghost menu-btn" id="menuBtn" aria-label="Buka menu">☰ Menu</button>
    <div>
-    <h1 id="ttl">Dashboard Sekolah Digital</h1>
+    <h1 id="ttl">Dashboard Sekolahku</h1>
+    <div class="cbs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 8.5a4.5 4.5 0 0 1 .5 9.5H7z"/></svg>Cloud Based School</div>
     <div class="sub"><span id="sch">UPTD SPF SD Negeri Lanas 1</span>, Kec. Botolinggo, Kab. Bondowoso<br><span id="dt"></span> · Tahun pelajaran <span id="ty"></span></div>
    </div>
   </div>
@@ -204,9 +208,9 @@ var IB=[
 ];
 /* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
 var DEF={
- v:4, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ v:5, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
  urls:{
-  sipas:'https://voluble-youtiao-1c2a79.netlify.app/',      /* URL SIPAS */
+  sipas:'https://sahwanto41-rgb.github.io/Sipas-SDN-Lanas-1/',      /* URL SIPAS */
   presensi:'https://sahwanto41-rgb.github.io/Presensi-Murid-SDN-Lanas-1/',   /* URL Presensi Murid */
   pra:'https://sahwanto41-rgb.github.io/Supervisi-Perencanaan/',        /* URL Praobservasi */
   obs:'https://sahwanto41-rgb.github.io/Supervisi-Pembelajaran/',        /* URL Observasi */
@@ -245,7 +249,7 @@ function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'
 function render(){
  $('sch').textContent=S.name;$('ty').textContent=S.year;
  $('dt').textContent=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
- document.title='Dashboard Sekolah Digital '+S.name;
+ document.title='Dashboard Sekolahku Cloud Based School '+S.name;
  var lg=S.logo?'<img alt="Logo sekolah" src="'+S.logo+'">':OWL;$('logoSide').innerHTML=lg;
  $('stats').innerHTML=STATS.map(function(s,i){var d=stat(s[1]),v=d?s[2](d.stats):null;return '<div class="card stat"><i class="e" aria-hidden="true">'+SE[i]+'</i><span>'+s[0]+'</span>'+(v==null?'<b class="nc">💤 Belum terhubung</b>':'<b>'+esc(v)+'</b>')+'</div>'}).join('');
  $('apps').innerHTML=APPS.map(function(a){var u=S.urls[a.k],ok=valid(u);
@@ -260,7 +264,7 @@ var NAV=[['Dashboard Utama','home'],['SIPAS: Surat Masuk dan Keluar','app:sipas'
 $('nav').innerHTML=NAV.map(function(n,i){return '<button data-t="'+n[1]+'"'+(i==0?' class="on"':'')+'><span aria-hidden="true">'+NE[i]+'</span>'+n[0]+'</button>'}).join('');
 function show(v){['home','rep','set'].forEach(function(x){$('v-'+x).classList.toggle('hide',x!==v)});
  document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===v)});
- $('ttl').textContent={home:'Dashboard Sekolah Digital',rep:'Laporan dan Rekapitulasi',set:'Pengaturan'}[v];$('side').classList.remove('open');if(v==='set'){gate();if(!OK)setTimeout(function(){$('pw').focus()},0)}}
+ $('ttl').textContent={home:'Dashboard Sekolahku',rep:'Laporan dan Rekapitulasi',set:'Pengaturan'}[v];$('side').classList.remove('open');if(v==='set'){gate();if(!OK)setTimeout(function(){$('pw').focus()},0)}}
 $('nav').addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var v=t.dataset.t;
  if(v.indexOf('app:')==0){var u=S.urls[v.slice(4)];if(valid(u))window.open(u,'_blank','noopener');else{show('set');$('msg').textContent='Isi URL aplikasi ini terlebih dulu.'}}else show(v)});
 document.addEventListener('click',function(e){if(e.target.dataset&&e.target.dataset.set){e.preventDefault();show('set')}});
