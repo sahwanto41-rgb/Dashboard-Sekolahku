@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard Sekolah Digital UPTD SPF SD Negeri Lanas 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#e9f5ff;--card:#fff;--ink:#1d2b4f;--mut:#56638a;--bd:#1d2b4f;--sh:#1d2b4f;--side:#1d2b4f;--mint:#9be8c4;--sun:#ffd666;--pink:#ffb3cf;--lav:#cdc3ff;--sky:#a6d8ff;--warn:#a85d00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11172b;--card:#1b2440;--ink:#eef1ff;--mut:#a4aed0;--bd:#7886c9;--sh:#060a1a;--side:#0a0f20;--mint:#235a4b;--sun:#6b5a1d;--pink:#6a3452;--lav:#443f7d;--sky:#245079;--warn:#f0b64e}}
+:root[data-theme="dark"]{--bg:#11172b;--card:#1b2440;--ink:#eef1ff;--mut:#a4aed0;--bd:#7886c9;--sh:#060a1a;--side:#0a0f20;--mint:#235a4b;--sun:#6b5a1d;--pink:#6a3452;--lav:#443f7d;--sky:#245079;--warn:#f0b64e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background-color:var(--bg);background-image:radial-gradient(color-mix(in srgb,var(--ink) 16%,transparent) 1.3px,transparent 1.5px);background-size:24px 24px;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
+a,button{font:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+aside :focus-visible{outline-color:#ffd666}
+h1,h2,h3,.brand,.stat b{font-family:'Baloo 2','Nunito',system-ui,sans-serif}
+.app{display:grid;grid-template-columns:262px 1fr;min-height:100vh}
+aside{background-color:var(--side);background-image:radial-gradient(circle,var(--bg) 6px,transparent 6.5px);background-size:28px 28px;background-position:right -14px top 0;background-repeat:repeat-y;background-attachment:local;color:#fff;padding:20px 28px 20px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand{display:flex;gap:10px;align-items:center;padding:4px 8px 18px;font-weight:800;font-size:17px;line-height:1.15}
+.logo{width:48px;height:48px;border-radius:16px;background:var(--sun);border:2.5px solid #fff;display:grid;place-items:center;font-weight:800;overflow:hidden;flex:none}
+.logo img,.logo svg{width:100%;height:100%;object-fit:cover}
+nav button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:2px solid transparent;color:#d6def2;padding:9px 12px;margin:2px 0;border-radius:14px;cursor:pointer;font-size:14px;font-weight:600}
+nav button span{width:24px;text-align:center}
+nav button:hover{background:#ffffff1c}
+nav button.on{background:var(--sun);color:#1d2b4f;font-weight:800;border-color:#fff;box-shadow:3px 3px 0 #ff9fc0}
+main{padding:24px;min-width:0}
+header.top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:22px}
+h1{font-size:clamp(24px,3.4vw,34px);margin:0;color:var(--ink);font-weight:800;line-height:1.1}
+.sub{color:var(--mut);font-size:14px;margin-top:4px}
+.user{display:flex;gap:10px;align-items:center;font-size:14px}
+.btn{background:var(--mint);color:var(--ink);border:2.5px solid var(--bd);border-radius:999px;padding:9px 18px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;text-align:center;box-shadow:3px 3px 0 var(--sh);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--sh)}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--sh)}
+.btn.ghost{background:var(--card)}
+.btn[aria-disabled=true]{background:var(--bg);color:var(--mut);border-style:dashed;box-shadow:none;cursor:not-allowed;transform:none}
+.grid{display:grid;gap:16px}
+.stats{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:10px}
+.card{background:var(--card);border:2.5px solid var(--bd);border-radius:20px;padding:16px;box-shadow:4px 4px 0 var(--sh)}
+.stat{position:relative;border-radius:18px;padding-right:44px}
+.stat:nth-child(5n+1){background:var(--mint)}.stat:nth-child(5n+2){background:var(--sky)}.stat:nth-child(5n+3){background:var(--sun)}.stat:nth-child(5n+4){background:var(--pink)}.stat:nth-child(5n+5){background:var(--lav)}
+.stat .e{position:absolute;right:12px;top:10px;font-style:normal;font-size:24px}
+.stat b{display:block;font-size:30px;line-height:1.15;color:var(--ink)}
+.stat b.nc{font-size:15px;font-family:'Nunito',sans-serif;font-weight:800;padding-top:6px}
+.stat span{font-size:13px;font-weight:700;color:var(--ink);opacity:.85}
+h2{font-size:21px;margin:26px 0 14px;color:var(--ink);display:inline-block;padding:0 6px;background:linear-gradient(transparent 58%,var(--sun) 58%)}
+.apps{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.app-card{display:flex;flex-direction:column;gap:8px}
+.app-card .ic{width:52px;height:52px;border-radius:17px;border:2.5px solid var(--bd);color:var(--ink);display:grid;place-items:center;transform:rotate(-4deg);transition:transform .2s;background:var(--mint)}
+.app-card:nth-child(even) .ic{transform:rotate(4deg)}
+.app-card:hover .ic{transform:rotate(0) scale(1.08)}
+.app-card:nth-child(5n+1) .ic{background:var(--mint)}.app-card:nth-child(5n+2) .ic{background:var(--sky)}.app-card:nth-child(5n+3) .ic{background:var(--sun)}.app-card:nth-child(5n+4) .ic{background:var(--pink)}.app-card:nth-child(5n+5) .ic{background:var(--lav)}
+.app-card h3{margin:4px 0 0;font-size:18px;line-height:1.2}
+.app-card p{margin:0;color:var(--mut);font-size:13.5px;flex:1}
+.app-card .btn{margin-top:4px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:2px 11px;border-radius:99px;background:var(--sun);color:var(--ink);border:2px solid var(--bd);width:max-content}
+.pill.ok{background:var(--mint)}
+.pill i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.info{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.info h3{margin:0 0 6px;font-size:18px}
+.empty{color:var(--mut);font-size:13.5px;margin:0}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px 14px;border:2px solid var(--bd);border-radius:14px;background:var(--card);color:var(--ink);font:inherit}
+input:focus{box-shadow:3px 3px 0 var(--sky)}
+.hide{display:none}
+.menu-btn{display:none}
+ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
+.hero{display:flex;align-items:center;gap:26px;background:var(--sky);margin-bottom:22px;padding:18px 24px;border-radius:28px}
+.mascot{width:104px;flex:none}
+.mascot svg{width:100%;height:auto;display:block;animation:bob 3.2s ease-in-out infinite}
+.mascot .eyes{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+.bubble{position:relative;flex:1;background:var(--card);border:2.5px solid var(--bd);border-radius:20px;padding:12px 18px;animation:pop .5s .15s both cubic-bezier(.3,1.5,.5,1)}
+.bubble::before{content:"";position:absolute;left:-11px;top:50%;width:18px;height:18px;background:var(--card);border-left:2.5px solid var(--bd);border-bottom:2.5px solid var(--bd);transform:translateY(-50%) rotate(45deg)}
+.bubble .hi{font:800 clamp(18px,2.6vw,25px)/1.15 'Baloo 2',sans-serif;margin:0}
+.bubble .tip{margin:4px 0 0;color:var(--mut);font-size:14px}
+.foot{margin-top:34px;text-align:center;color:var(--mut);font-size:13px}
+@keyframes bob{50%{transform:translateY(-4px) rotate(-2deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+@media (max-width:820px){
+ .app{grid-template-columns:1fr}
+ aside{position:fixed;inset:0 auto 0 0;width:270px;z-index:5;transform:translateX(-100%);transition:transform .2s}
+ aside.open{transform:none}
+ .menu-btn{display:inline-block}
+ main{padding:16px}
+ .hero{padding:14px;gap:18px}.mascot{width:70px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside id="side" aria-label="Navigasi utama">
+ <div class="brand"><div class="logo" id="logoSide">L1</div><div>SDN Lanas 1<br><small style="font-weight:400;color:#cfdcee">Botolinggo, Bondowoso</small></div></div>
+ <nav id="nav"></nav>
+</aside>
+<main>
+ <header class="top">
+  <div style="display:flex;gap:12px;align-items:center">
+   <button class="btn ghost menu-btn" id="menuBtn" aria-label="Buka menu">☰ Menu</button>
+   <div>
+    <h1 id="ttl">Dashboard Sekolah Digital</h1>
+    <div class="sub"><span id="sch">UPTD SPF SD Negeri Lanas 1</span>, Kec. Botolinggo, Kab. Bondowoso<br><span id="dt"></span> · Tahun pelajaran <span id="ty"></span></div>
+   </div>
+  </div>
+  <div class="user"><div style="text-align:right"><b>Administrator</b><div class="sub" style="margin:0">Mode lokal</div></div><button class="btn ghost" id="theme">🌓 Tema</button></div>
+ </header>
+
+ <section id="v-home">
+  <div class="card hero"><div class="mascot" id="mascot"></div><div class="bubble"><p class="hi" id="hi"></p><p class="tip" id="tip"></p></div></div>
+  <div class="grid stats" id="stats"></div>
+  <h2>Aplikasi digital sekolah</h2>
+  <div class="grid apps" id="apps"></div>
+  <h2>Informasi dan aktivitas</h2>
+  <div class="grid info" id="info"></div>
+ </section>
+
+ <section id="v-rep" class="hide">
+  <div class="card"><h3 style="margin-top:0">Laporan dan rekapitulasi</h3>
+  <p class="empty">Belum Terhubung. Rekap akan tampil setelah kelima aplikasi terhubung lewat API. Sementara itu, buka rekap langsung di tiap aplikasi.</p>
+  <div id="repLinks" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div></div>
+ </section>
+
+ <section id="v-set" class="hide">
+  <div class="grid info">
+   <div class="card"><h3 style="margin-top:0">Identitas dan URL aplikasi</h3>
+    <label for="sName">Nama sekolah</label><input id="sName">
+    <label for="sYear">Tahun pelajaran</label><input id="sYear" placeholder="2026/2027">
+    <label for="sLogo">Logo sekolah (gambar)</label><input id="sLogo" type="file" accept="image/*">
+    <div id="urlFields"></div>
+    <div style="margin-top:16px;display:flex;gap:8px;align-items:center"><button class="btn" id="save">Simpan pengaturan</button><button class="btn ghost" id="shareCfg" type="button">Salin tautan pengaturan</button><span id="msg" class="sub" role="status"></span></div>
+   </div>
+   <div class="card"><h3 style="margin-top:0">Panduan singkat</h3>
+    <ol class="g">
+     <li><b>Administrator:</b> isi URL asli tiap aplikasi di kolom sebelah, lalu simpan.</li>
+     <li><b>Kepala sekolah dan guru:</b> klik BUKA APLIKASI pada kartu, atau pilih menu di kiri.</li>
+     <li><b>Notula rapat:</b> aplikasi keenam. Isi URL-nya seperti aplikasi lain.</li>
+     <li><b>Statistik:</b> angka hanya muncul setelah aplikasi sumber mengirim data lewat API. Isi URL data JSON dari Apps Script agar angka tampil. Sebelum itu tertulis Belum Terhubung.</li>
+     <li><b>Pemasangan:</b> unggah file ini ke hosting mana pun, atau bagikan tautan halaman ini.</li>
+     <li><b>Hak akses dan login:</b> masuk lewat akun tiap aplikasi. Login terpusat perlu server (lihat catatan pengembangan).</li>
+    </ol>
+    <p class="sub">Pengaturan tersimpan di peramban perangkat ini saja.</p>
+   </div>
+  </div>
+ </section>
+<p class="foot">Dibuat dengan semangat untuk guru dan murid SDN Lanas 1 🌱</p>
+</main>
+</div>
+<script>
+var APPS=[
+ {k:'sipas',n:'SIPAS SDN Lanas 1',d:'Surat masuk dan surat keluar, disposisi kepala sekolah.',m:'Surat',p:'M4 6h16v12H4zM4 7l8 6 8-6'},
+ {k:'presensi',n:'Presensi Murid',d:'Kehadiran harian: hadir, izin, sakit, alpa per kelas.',m:'Presensi',p:'M9 12l2 2 4-4M12 3a9 9 0 100 18 9 9 0 000-18z'},
+ {k:'pra',n:'Praobservasi Pembelajaran',d:'Telaah perencanaan pembelajaran dan jadwal praobservasi.',m:'Praobservasi',p:'M6 3h9l4 4v14H6zM9 12h7M9 16h7'},
+ {k:'obs',n:'Observasi Pembelajaran',d:'Supervisi pelaksanaan, umpan balik, dan tindak lanjut.',m:'Observasi',p:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z'},
+ {k:'jurnal',n:'Jurnal Mengajar Guru',d:'Jurnal harian: kelas, mata pelajaran, materi, jam mengajar.',m:'Jurnal',p:'M5 4h12a2 2 0 012 2v14H7a2 2 0 01-2-2zM9 8h6'},
+ {k:'notula',n:'Notula Rapat',d:'Catatan rapat: agenda, pembahasan, keputusan, dan tindak lanjut.',m:'Notula',p:'M7 4h10a2 2 0 012 2v14l-4-2-3 2-3-2-4 2V6a2 2 0 012-2zM9 9h6M9 13h4'},
+ {k:'prestasi',n:'Prestasi Murid',d:'Data prestasi akademik dan nonakademik murid, tingkat lomba, dan capaian.',m:'Prestasi',p:'M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3'}
+];
+function prog(d){return d.sudah==null?null:d.sudah+' dari '+d.total}
+var STATS=[['Total surat masuk','sipas',function(d){return d.masuk}],['Total surat keluar','sipas',function(d){return d.keluar}],['Kehadiran murid','presensi',function(d){return d.persen==null?null:d.persen+'%'}],['Progres praobservasi','pra',prog],['Progres observasi','obs',prog],['Pengisian jurnal','jurnal',function(d){return d.terisi==null?null:d.terisi+' dari '+d.total}]];
+var D={};
+function load(){APPS.forEach(function(a){var u=S.api[a.k];if(!valid(u)){delete D[a.k];return}
+ fetch(u).then(function(r){return r.json()}).then(function(j){D[a.k]={stats:j.stats||j,updated:j.updated};render()}).catch(function(){D[a.k]={err:1};render()})});render()}
+function stat(k){var d=D[k];return d&&d.stats?d:null}
+function dstat(k){var d=D[k];if(!valid(S.api[k]))return 'Data: Belum Terhubung';if(!d)return 'Data: memuat...';if(d.err)return 'Data: gagal diambil, periksa URL data';return 'Data terhubung'+(d.updated?', diperbarui '+esc(d.updated):'')}
+var INFO=['Pengumuman sekolah','Jadwal supervisi','Pengingat pengisian jurnal','Informasi presensi murid','Aktivitas administrasi terbaru','Tugas yang belum selesai'];
+/* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
+var DEF={
+ v:1, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ urls:{
+  sipas:'https://voluble-youtiao-1c2a79.netlify.app/',      /* URL SIPAS */
+  presensi:'https://sahwanto41-rgb.github.io/Presensi-Murid-SDN-Lanas-1/',   /* URL Presensi Murid */
+  pra:'https://dancing-raindrop-c8553c.netlify.app/',        /* URL Praobservasi */
+  obs:'https://whimsical-griffin-edfb5a.netlify.app/',        /* URL Observasi */
+  jurnal:'https://silly-blancmange-8e3c2e.netlify.app/',     /* URL Jurnal Mengajar */
+  notula:'https://dazzling-pastelito-88cff5.netlify.app/',     /* URL Notula Rapat */
+  prestasi:'https://effulgent-fudge-c83eb5.netlify.app/'    /* URL Prestasi Murid */
+ },
+ api:{
+  sipas:'',      /* URL data JSON (opsional) */
+  presensi:'',
+  pra:'',
+  obs:'',
+  jurnal:'',
+  notula:'',
+  prestasi:''
+ }
+};
+var S={name:'UPTD SPF SD Negeri Lanas 1',year:'',logo:'',urls:{},api:{}};
+try{var r=localStorage.getItem('lanas1');if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+['urls','api'].forEach(function(g){S[g]=S[g]||{};Object.keys(DEF[g]).forEach(function(k){if(!S[g][k])S[g][k]=DEF[g][k]})});
+if((S.v||0)<DEF.v){['urls','api'].forEach(function(g){Object.keys(DEF[g]).forEach(function(k){if(valid(DEF[g][k]))S[g][k]=DEF[g][k]})});S.v=DEF.v;try{localStorage.setItem('lanas1',JSON.stringify(S))}catch(e){}}
+if(!S.year){var d=new Date(),y=d.getFullYear();S.year=d.getMonth()>=6?y+'/'+(y+1):(y-1)+'/'+y}
+var $=function(i){return document.getElementById(i)};
+function ico(p){return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+p+'"/></svg>'}
+function valid(u){return /^https?:\/\//i.test(u||'')}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var OWL='<svg viewBox="0 0 96 96" aria-hidden="true"><ellipse cx="38" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="58" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="48" cy="60" rx="30" ry="29" fill="#ffd666" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="48" cy="73" rx="17" ry="14" fill="#fff3c4"/><path d="M19 58c-6 6-6 18 2 24 4-8 5-16 3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M77 58c6 6 6 18-2 24-4-8-5-16-3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><g class="eyes"><circle cx="36" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="60" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="38" cy="55" r="5" fill="#1d2b4f"/><circle cx="62" cy="55" r="5" fill="#1d2b4f"/><circle cx="39.6" cy="53" r="1.7" fill="#fff"/><circle cx="63.6" cy="53" r="1.7" fill="#fff"/></g><path d="M44 63l4 7 4-7z" fill="#ff8a5b" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="65" r="4" fill="#ff9fc0"/><circle cx="71" cy="65" r="4" fill="#ff9fc0"/><path d="M35 32v6c0 4 26 4 26 0v-6z" fill="#2c3f73" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 26L48 13l26 13-26 13z" fill="#1d2b4f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M72 27v13" stroke="#ff9fc0" stroke-width="3" stroke-linecap="round"/><circle cx="72" cy="42" r="3.2" fill="#ff9fc0"/></svg>';
+var SE=['📥','📤','🙋','📝','👀','📒'],IE=['📢','🗓️','📒','🙋','🧾','📌'],NE=['🏠','✉️','✅','📝','👀','📒','🗒️','🏆','📊','⚙️'];
+var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Jurnal sudah diisi? Si Bijak mengintip, lho.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
+function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
+ $('mascot').innerHTML=OWL;$('hi').textContent='Selamat '+g+'! Siap mencerdaskan bangsa?';$('tip').textContent=TIPS[d.getDate()%TIPS.length]}
+function render(){
+ $('sch').textContent=S.name;$('ty').textContent=S.year;
+ $('dt').textContent=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+ document.title='Dashboard Sekolah Digital '+S.name;
+ var lg=S.logo?'<img alt="Logo sekolah" src="'+S.logo+'">':OWL;$('logoSide').innerHTML=lg;
+ $('stats').innerHTML=STATS.map(function(s,i){var d=stat(s[1]),v=d?s[2](d.stats):null;return '<div class="card stat"><i class="e" aria-hidden="true">'+SE[i]+'</i><span>'+s[0]+'</span>'+(v==null?'<b class="nc">💤 Belum terhubung</b>':'<b>'+esc(v)+'</b>')+'</div>'}).join('');
+ $('apps').innerHTML=APPS.map(function(a){var u=S.urls[a.k],ok=valid(u);
+  return '<div class="card app-card"><div class="ic">'+ico(a.p)+'</div><h3>'+a.n+'</h3><p>'+a.d+'</p>'+
+  '<span class="pill'+(ok?' ok':'')+'"><i></i>'+(ok?'URL tersimpan':'URL belum diisi')+'</span>'+
+  '<span class="sub" style="margin:0">'+dstat(a.k)+'</span>'+
+  (ok?'<a class="btn" target="_blank" rel="noopener" href="'+esc(u)+'">BUKA APLIKASI</a>':'<a class="btn" aria-disabled="true" href="#" data-set="1">ATUR URL DULU</a>')+'</div>'}).join('');
+ $('info').innerHTML=INFO.map(function(t,i){return '<div class="card"><h3>'+IE[i]+' '+t+'</h3><p class="empty">Masih sepi di sini. Si Bijak menunggu aplikasi terhubung.</p></div>'}).join('');
+ $('repLinks').innerHTML=APPS.map(function(a){var u=S.urls[a.k];return valid(u)?'<a class="btn ghost" target="_blank" rel="noopener" href="'+esc(u)+'">Rekap '+a.m+'</a>':'<span class="pill">'+a.m+': URL belum diisi</span>'}).join('');
+}
+var NAV=[['Dashboard Utama','home'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['Jurnal Mengajar','app:jurnal'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
+$('nav').innerHTML=NAV.map(function(n,i){return '<button data-t="'+n[1]+'"'+(i==0?' class="on"':'')+'><span aria-hidden="true">'+NE[i]+'</span>'+n[0]+'</button>'}).join('');
+function show(v){['home','rep','set'].forEach(function(x){$('v-'+x).classList.toggle('hide',x!==v)});
+ document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===v)});
+ $('ttl').textContent={home:'Dashboard Sekolah Digital',rep:'Laporan dan Rekapitulasi',set:'Pengaturan'}[v];$('side').classList.remove('open')}
+$('nav').addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var v=t.dataset.t;
+ if(v.indexOf('app:')==0){var u=S.urls[v.slice(4)];if(valid(u))window.open(u,'_blank','noopener');else{show('set');$('msg').textContent='Isi URL aplikasi ini terlebih dulu.'}}else show(v)});
+document.addEventListener('click',function(e){if(e.target.dataset&&e.target.dataset.set){e.preventDefault();show('set')}});
+$('menuBtn').onclick=function(){$('side').classList.toggle('open')};
+$('theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);r.dataset.theme=d?'light':'dark'};
+$('urlFields').innerHTML=APPS.map(function(a){return '<label for="u_'+a.k+'">URL '+a.n+'</label><input id="u_'+a.k+'" type="url" placeholder="https://..."><label for="a_'+a.k+'" style="font-weight:400">URL data JSON (opsional)</label><input id="a_'+a.k+'" type="url" placeholder="https://script.google.com/macros/s/.../exec">'}).join('');
+function fill(){$('sName').value=S.name;$('sYear').value=S.year;APPS.forEach(function(a){$('u_'+a.k).value=S.urls[a.k]||'';$('a_'+a.k).value=S.api[a.k]||''})}
+$('sLogo').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>500000){$('msg').textContent='Logo maksimal 500 KB.';e.target.value='';return}
+ var fr=new FileReader();fr.onload=function(){S.logo=fr.result;render()};fr.readAsDataURL(f)};
+$('save').onclick=function(){S.name=$('sName').value.trim()||S.name;S.year=$('sYear').value.trim()||S.year;
+ var bad=null;APPS.forEach(function(a){var v=$('u_'+a.k).value.trim();if(v&&!valid(v))bad=a.n;else S.urls[a.k]=v;var w=$('a_'+a.k).value.trim();if(w&&!valid(w))bad='data '+a.n;else S.api[a.k]=w});
+ if(bad){$('msg').textContent='URL '+bad+' harus diawali http:// atau https://';return}
+ try{localStorage.setItem('lanas1',JSON.stringify(S));$('msg').textContent='Tersimpan.'}catch(e){$('msg').textContent='Tersimpan sementara (peramban menolak penyimpanan).'}
+ load()};
+$('shareCfg').onclick=function(){
+ $('save').onclick();if(/harus diawali/.test($('msg').textContent))return;
+ var o={n:S.name,y:S.year,u:S.urls,a:S.api};
+ var link=location.href.split('#')[0]+'#cfg='+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(o)))));
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(link).then(function(){$('msg').textContent='Tautan tersalin. Buka di perangkat lain.'},function(){window.prompt('Salin tautan ini:',link)})}
+ else window.prompt('Salin tautan ini:',link)};
+(function(){var m=(location.hash||'').match(/^#cfg=(.+)$/);if(!m)return;
+ try{var o=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+  if(typeof o.n==='string'&&o.n)S.name=o.n;if(typeof o.y==='string'&&o.y)S.year=o.y;
+  [['u','urls'],['a','api']].forEach(function(p){var src=o[p[0]]||{};Object.keys(DEF[p[1]]).forEach(function(k){if(valid(src[k]))S[p[1]][k]=src[k]})});
+  localStorage.setItem('lanas1',JSON.stringify(S));$('msg').textContent='Pengaturan dari tautan diterapkan.'}catch(e){}
+ try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}})();
+hero();fill();load();
+</script>
+</body>
+</html>
