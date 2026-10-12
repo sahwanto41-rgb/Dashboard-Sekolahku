@@ -120,6 +120,8 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
   <div class="grid stats" id="stats"></div>
   <h2>Aplikasi digital sekolah</h2>
   <div class="grid apps" id="apps"></div>
+  <h2>Layanan dan tautan sekolah</h2>
+  <div class="grid apps" id="links"></div>
   <h2>Informasi dan aktivitas</h2>
   <div class="grid info" id="info"></div>
  </section>
@@ -133,7 +135,7 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  <section id="v-set" class="hide">
   <div class="card" id="lockBox" style="max-width:420px"><h3 style="margin-top:0">🔒 Pengaturan terkunci</h3><p class="empty">Masukkan kata sandi administrator untuk membuka pengaturan.</p><label for="pw">Kata sandi</label><input id="pw" type="password" autocomplete="current-password"><div style="margin-top:14px;display:flex;gap:8px;align-items:center"><button class="btn" id="pwGo" type="button">Buka pengaturan</button><span id="pwMsg" class="sub" role="status"></span></div></div>
   <div class="grid info hide" id="setBody">
-   <div class="card"><h3 style="margin-top:0">Identitas dan URL aplikasi</h3>
+   <div class="card"><h3 style="margin-top:0">Identitas, URL aplikasi, dan tautan</h3>
     <label for="sName">Nama sekolah</label><input id="sName">
     <label for="sYear">Tahun pelajaran</label><input id="sYear" placeholder="2026/2027">
     <label for="sLogo">Logo sekolah (gambar)</label><input id="sLogo" type="file" accept="image/*">
@@ -166,7 +168,11 @@ var APPS=[
  {k:'jurnal',n:'Jurnal Mengajar Guru',d:'Jurnal harian: kelas, mata pelajaran, materi, jam mengajar.',m:'Jurnal',p:'M5 4h12a2 2 0 012 2v14H7a2 2 0 01-2-2zM9 8h6'},
  {k:'notula',n:'Notula Rapat',d:'Catatan rapat: agenda, pembahasan, keputusan, dan tindak lanjut.',m:'Notula',p:'M7 4h10a2 2 0 012 2v14l-4-2-3 2-3-2-4 2V6a2 2 0 012-2zM9 9h6M9 13h4'},
  {k:'prestasi',n:'Prestasi Murid',d:'Data prestasi akademik dan nonakademik murid, tingkat lomba, dan capaian.',m:'Prestasi',p:'M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3'},
- {k:'asesmen',n:'Analisis Hasil Asesmen',d:'Olah nilai asesmen, analisis ketuntasan tujuan pembelajaran, perbaikan dan pengayaan.',m:'Asesmen',p:'M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3'}
+ {k:'asesmen',n:'Analisis Hasil Asesmen',d:'Olah nilai asesmen, analisis ketuntasan tujuan pembelajaran, perbaikan dan pengayaan.',m:'Asesmen',p:'M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3'},
+ {k:'tiktok',l:1,n:'TikTok SDN Lanas 1',d:'Akun TikTok resmi sekolah (@_las_one_): kegiatan dan informasi terbaru.',m:'TikTok',p:'M14 3v11.5a3.5 3.5 0 11-3.5-3.5M14 3c.4 2.6 2 4.2 5 4.5'},
+ {k:'tamu',l:1,n:'Buku Tamu',d:'Pengisian buku tamu digital untuk setiap tamu yang berkunjung ke sekolah.',m:'Buku Tamu',p:'M5 4h12a2 2 0 012 2v14H7a2 2 0 01-2-2zM9 9h6M9 13h6'},
+ {k:'saran',l:1,n:'Kotak Saran',d:'Sampaikan saran, kritik, dan masukan untuk kemajuan sekolah.',m:'Kotak Saran',p:'M4 5h16v11H9l-5 4zM8 9h8M8 12h5'},
+ {k:'spmb',l:1,n:'SPMB UPTD SPF SDN Lanas 1',d:'Sistem Penerimaan Murid Baru (SPMB) UPTD SPF SD Negeri Lanas 1.',m:'SPMB',p:'M12 4L2 9l10 5 10-5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5'}
 ];
 function prog(d){return d.sudah==null?null:d.sudah+' dari '+d.total}
 var STATS=[['Total surat masuk','sipas',function(d){return d.suratMasuk!=null?d.suratMasuk:d.masuk}],['Total surat keluar','sipas',function(d){return d.suratKeluar!=null?d.suratKeluar:d.keluar}],['Kehadiran murid','presensi',function(d){return d.persen==null?null:d.persen+'%'}],['Progres praobservasi','pra',prog],['Progres observasi','obs',prog],['Pengisian jurnal','jurnal',function(d){return d.terisi==null?null:d.terisi+' dari '+d.total}],['Kehadiran pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}]];
@@ -211,7 +217,7 @@ var IB=[
 ];
 /* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
 var DEF={
- v:6, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ v:7, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
  urls:{
   sipas:'https://sahwanto41-rgb.github.io/Sipas-SDN-Lanas-1/',      /* URL SIPAS */
   presensi:'https://sahwanto41-rgb.github.io/Presensi-Murid-SDN-Lanas-1/',   /* URL Presensi Murid */
@@ -221,7 +227,11 @@ var DEF={
   notula:'https://sahwanto41-rgb.github.io/Notula-Rapat/',     /* URL Notula Rapat */
   prestasi:'https://effulgent-fudge-c83eb5.netlify.app/',    /* URL Prestasi Murid */
   pegawai:'https://sahwanto41-rgb.github.io/SIPP_Pegawai/',    /* URL Presensi Pegawai */
-  asesmen:'https://sahwanto41-rgb.github.io/Hasil-Asesmen-dan-Analisis/'    /* URL Analisis Hasil Asesmen */
+  asesmen:'https://sahwanto41-rgb.github.io/Hasil-Asesmen-dan-Analisis/',    /* URL Analisis Hasil Asesmen */
+  tiktok:'https://www.tiktok.com/@_las_one_',    /* URL TikTok */
+  tamu:'https://qr1.me-qr.com/id/link-list/cj2l65ql/show',    /* URL Buku Tamu */
+  saran:'https://qr1.me-qr.com/id/link-list/d571dhgt/show',    /* URL Kotak Saran */
+  spmb:'https://spmb.bondowosokab.go.id'    /* URL SPMB */
  },
  api:{
   sipas:'https://script.google.com/macros/s/AKfycbwpVGyLK7lLftYCr_DeFSn2Hncz0kG4DyuvTgZGExnmJshgz2WCQeVHpmo0S2ENSSC8Eg/exec?aksi=statistik',
@@ -232,7 +242,11 @@ var DEF={
   notula:'https://script.google.com/macros/s/AKfycby7lwsvumd8ruCC1VdjEEOD_U1JTvWCavG47qfMrdzpPLHk7G3z88DHoFEWJSgKUPEV/exec?aksi=statistik',
   prestasi:'',
   pegawai:'https://script.google.com/macros/s/AKfycbzT8VLzyOYRVuNUKdgBLKKqLPTIjgQpDyIWcvfB4OmLFD89rc3qOU2f1UU8hnQnuFArsA/exec?aksi=stats',
-  asesmen:'https://script.google.com/macros/s/AKfycbxfwp64403sjNYtOZUQQY-89iTI6S6gnx8q1BDDHumAdkMaWZgn3mUDTrzwhrqonRUYHw/exec?aksi=stats'
+  asesmen:'https://script.google.com/macros/s/AKfycbxfwp64403sjNYtOZUQQY-89iTI6S6gnx8q1BDDHumAdkMaWZgn3mUDTrzwhrqonRUYHw/exec?aksi=stats',
+  tiktok:'',
+  tamu:'',
+  saran:'',
+  spmb:''
  }
 };
 var S={name:'UPTD SPF SD Negeri Lanas 1',year:'',logo:'',urls:{},api:{}};
@@ -245,7 +259,7 @@ function ico(p){return '<svg width="24" height="24" viewBox="0 0 24 24" fill="no
 function valid(u){return /^https?:\/\//i.test(u||'')}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var OWL='<svg viewBox="0 0 96 96" aria-hidden="true"><ellipse cx="38" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="58" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="48" cy="60" rx="30" ry="29" fill="#ffd666" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="48" cy="73" rx="17" ry="14" fill="#fff3c4"/><path d="M19 58c-6 6-6 18 2 24 4-8 5-16 3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M77 58c6 6 6 18-2 24-4-8-5-16-3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><g class="eyes"><circle cx="36" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="60" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="38" cy="55" r="5" fill="#1d2b4f"/><circle cx="62" cy="55" r="5" fill="#1d2b4f"/><circle cx="39.6" cy="53" r="1.7" fill="#fff"/><circle cx="63.6" cy="53" r="1.7" fill="#fff"/></g><path d="M44 63l4 7 4-7z" fill="#ff8a5b" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="65" r="4" fill="#ff9fc0"/><circle cx="71" cy="65" r="4" fill="#ff9fc0"/><path d="M35 32v6c0 4 26 4 26 0v-6z" fill="#2c3f73" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 26L48 13l26 13-26 13z" fill="#1d2b4f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M72 27v13" stroke="#ff9fc0" stroke-width="3" stroke-linecap="round"/><circle cx="72" cy="42" r="3.2" fill="#ff9fc0"/></svg>';
-var SE=['📥','📤','🙋','📝','👀','📒','🪪','📈','🗒️'],IE=['📢','🗓️','📒','🙋','🧾','📌'],NE=['🏠','✉️','✅','🪪','📝','👀','📒','🗒️','🏆','📈','📊','⚙️'];
+var SE=['📥','📤','🙋','📝','👀','📒','🪪','📈','🗒️'],IE=['📢','🗓️','📒','🙋','🧾','📌'],NE=['🏠','✉️','✅','🪪','📝','👀','📒','🗒️','🏆','📈','🎵','📖','💬','🎓','📊','⚙️'];
 var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Jurnal sudah diisi? Si Bijak mengintip, lho.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
 function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
  $('mascot').innerHTML=OWL;$('hi').textContent='Selamat '+g+'! Siap mencerdaskan bangsa?';$('tip').textContent=TIPS[d.getDate()%TIPS.length]}
@@ -255,15 +269,17 @@ function render(){
  document.title='Dashboard Sekolahku Cloud Based School '+S.name;
  var lg=S.logo?'<img alt="Logo sekolah" src="'+S.logo+'">':OWL;$('logoSide').innerHTML=lg;
  $('stats').innerHTML=STATS.map(function(s,i){var d=stat(s[1]),v=d?s[2](d.stats):null;return '<div class="card stat"><i class="e" aria-hidden="true">'+SE[i]+'</i><span>'+s[0]+'</span>'+(v==null?'<b class="nc">💤 Belum terhubung</b>':'<b>'+esc(v)+'</b>')+'</div>'}).join('');
- $('apps').innerHTML=APPS.map(function(a){var u=S.urls[a.k],ok=valid(u);
+ function card(a){var u=S.urls[a.k],ok=valid(u);
   return '<div class="card app-card"><div class="ic">'+ico(a.p)+'</div><h3>'+a.n+'</h3><p>'+a.d+'</p>'+
   '<span class="pill'+(ok?' ok':'')+'"><i></i>'+(ok?'URL tersimpan':'URL belum diisi')+'</span>'+
-  '<span class="sub" style="margin:0">'+dstat(a.k)+'</span>'+
-  (ok?'<a class="btn" target="_blank" rel="noopener" href="'+esc(u)+'">BUKA APLIKASI</a>':'<a class="btn" aria-disabled="true" href="#" data-set="1">ATUR URL DULU</a>')+'</div>'}).join('');
+  (a.l?'':'<span class="sub" style="margin:0">'+dstat(a.k)+'</span>')+
+  (ok?'<a class="btn" target="_blank" rel="noopener" href="'+esc(u)+'">'+(a.l?'BUKA TAUTAN':'BUKA APLIKASI')+'</a>':'<a class="btn" aria-disabled="true" href="#" data-set="1">ATUR URL DULU</a>')+'</div>'}
+ $('apps').innerHTML=APPS.filter(function(a){return !a.l}).map(card).join('');
+ $('links').innerHTML=APPS.filter(function(a){return a.l}).map(card).join('');
  $('info').innerHTML=INFO.map(function(t,i){var b=IB[i].f();return '<div class="card"><h3>'+IE[i]+' '+t+'</h3>'+(b==null?'<p class="empty">💤 '+esc(why(IB[i].ks))+'</p>':b.charAt(0)==='<'?b:'<p class="empty">'+b+'</p>')+'</div>'}).join('');
- $('repLinks').innerHTML=APPS.map(function(a){var u=S.urls[a.k];return valid(u)?'<a class="btn ghost" target="_blank" rel="noopener" href="'+esc(u)+'">Rekap '+a.m+'</a>':'<span class="pill">'+a.m+': URL belum diisi</span>'}).join('');
+ $('repLinks').innerHTML=APPS.filter(function(a){return !a.l}).map(function(a){var u=S.urls[a.k];return valid(u)?'<a class="btn ghost" target="_blank" rel="noopener" href="'+esc(u)+'">Rekap '+a.m+'</a>':'<span class="pill">'+a.m+': URL belum diisi</span>'}).join('');
 }
-var NAV=[['Dashboard Utama','home'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Presensi Pegawai','app:pegawai'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['Jurnal Mengajar','app:jurnal'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Analisis Hasil Asesmen','app:asesmen'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
+var NAV=[['Dashboard Utama','home'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Presensi Pegawai','app:pegawai'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['Jurnal Mengajar','app:jurnal'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Analisis Hasil Asesmen','app:asesmen'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB Lanas 1','app:spmb'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
 $('nav').innerHTML=NAV.map(function(n,i){return '<button data-t="'+n[1]+'"'+(i==0?' class="on"':'')+'><span aria-hidden="true">'+NE[i]+'</span>'+n[0]+'</button>'}).join('');
 function show(v){['home','rep','set'].forEach(function(x){$('v-'+x).classList.toggle('hide',x!==v)});
  document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===v)});
@@ -273,12 +289,12 @@ $('nav').addEventListener('click',function(e){var t=e.target.closest('button');i
 document.addEventListener('click',function(e){if(e.target.dataset&&e.target.dataset.set){e.preventDefault();show('set')}});
 $('menuBtn').onclick=function(){$('side').classList.toggle('open')};
 $('theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);r.dataset.theme=d?'light':'dark'};
-$('urlFields').innerHTML=APPS.map(function(a){return '<label for="u_'+a.k+'">URL '+a.n+'</label><input id="u_'+a.k+'" type="url" placeholder="https://..."><label for="a_'+a.k+'" style="font-weight:400">URL data JSON (opsional)</label><input id="a_'+a.k+'" type="url" placeholder="https://script.google.com/macros/s/.../exec">'}).join('');
-function fill(){$('sName').value=S.name;$('sYear').value=S.year;APPS.forEach(function(a){$('u_'+a.k).value=S.urls[a.k]||'';$('a_'+a.k).value=S.api[a.k]||''})}
+$('urlFields').innerHTML=APPS.map(function(a){return '<label for="u_'+a.k+'">URL '+a.n+'</label><input id="u_'+a.k+'" type="url" placeholder="https://...">'+(a.l?'':'<label for="a_'+a.k+'" style="font-weight:400">URL data JSON (opsional)</label><input id="a_'+a.k+'" type="url" placeholder="https://script.google.com/macros/s/.../exec">')}).join('');
+function fill(){$('sName').value=S.name;$('sYear').value=S.year;APPS.forEach(function(a){$('u_'+a.k).value=S.urls[a.k]||'';if(!a.l)$('a_'+a.k).value=S.api[a.k]||''})}
 $('sLogo').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>500000){$('msg').textContent='Logo maksimal 500 KB.';e.target.value='';return}
  var fr=new FileReader();fr.onload=function(){S.logo=fr.result;render()};fr.readAsDataURL(f)};
 $('save').onclick=function(){S.name=$('sName').value.trim()||S.name;S.year=$('sYear').value.trim()||S.year;
- var bad=null;APPS.forEach(function(a){var v=$('u_'+a.k).value.trim();if(v&&!valid(v))bad=a.n;else S.urls[a.k]=v;var w=$('a_'+a.k).value.trim();if(w&&!valid(w))bad='data '+a.n;else S.api[a.k]=w});
+ var bad=null;APPS.forEach(function(a){var v=$('u_'+a.k).value.trim();if(v&&!valid(v))bad=a.n;else S.urls[a.k]=v;if(a.l)return;var w=$('a_'+a.k).value.trim();if(w&&!valid(w))bad='data '+a.n;else S.api[a.k]=w});
  if(bad){$('msg').textContent='URL '+bad+' harus diawali http:// atau https://';return}
  try{localStorage.setItem('lanas1',JSON.stringify(S));$('msg').textContent='Tersimpan.'}catch(e){$('msg').textContent='Tersimpan sementara (peramban menolak penyimpanan).'}
  load()};
