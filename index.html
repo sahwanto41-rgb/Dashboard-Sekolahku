@@ -26,7 +26,7 @@ aside .brand{display:flex;gap:10px;align-items:center;padding:4px 8px 18px;font-
 .logo{width:48px;height:48px;border-radius:16px;background:var(--sun);border:2.5px solid #fff;display:grid;place-items:center;font-weight:800;overflow:hidden;flex:none}
 .logo img,.logo svg{width:100%;height:100%;object-fit:cover}
 nav button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:2px solid transparent;color:#d6def2;padding:9px 12px;margin:2px 0;border-radius:14px;cursor:pointer;font-size:14px;font-weight:600}
-nav button span{width:24px;text-align:center}
+nav button span{width:24px;flex:none;text-align:center}
 nav button:hover{background:#ffffff1c}
 nav button.on{background:var(--sun);color:#1d2b4f;font-weight:800;border-color:#fff;box-shadow:3px 3px 0 #ff9fc0}
 main{padding:24px;min-width:0}
@@ -123,10 +123,10 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  .user .btn{min-height:40px;padding:6px 14px}
  .lbl{display:none}
  .tw3{--tt:clamp(27px,9vw,40px)}
- .tw3+.sub{font-size:13px;margin-top:6px}
+ .tw3+.sub{font-size:12.5px;line-height:1.45;margin-top:6px}
  h2{font-size:19px;margin:20px 0 12px;scroll-margin-top:12px}
  /* hero */
- .hero{padding:12px;gap:14px;border-radius:22px;margin-bottom:14px}
+ .hero{padding:10px 12px 10px 10px;gap:12px;border-radius:22px;margin-bottom:14px}
  .mascot{width:62px}
  .bubble{padding:10px 14px;border-radius:16px}
  .bubble .hi{font-size:17px}
@@ -137,16 +137,22 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  .stat{padding:12px 36px 12px 12px;border-radius:16px;box-shadow:3px 3px 0 var(--sh)}
  .stat .e{right:8px;top:8px;font-size:20px}
  .stat b{font-size:24px}
- .stat b.nc{font-size:13px}
+ .stat b.nc{font-size:12.5px;padding-top:2px;line-height:1.25}
  .stat span{font-size:12px;line-height:1.25;display:block}
- /* kartu aplikasi: ikon di kiri, tombol lebar penuh */
+ /* kartu aplikasi: kotak 2 kolom ala layar utama HP, seluruh kotak bisa diketuk */
  .grid{gap:12px}
- .app-card{display:grid;grid-template-columns:52px 1fr;column-gap:12px;row-gap:8px;align-items:start;padding:14px}
- .app-card .ic{grid-row:1 / span 2;transform:none!important}
- .app-card h3{margin:0;font-size:17px;align-self:end}
- .app-card p{grid-column:2;font-size:13px}
- .app-card .pill,.app-card .sub,.app-card .btn{grid-column:1 / -1}
- .app-card .btn{min-height:48px;display:flex;align-items:center;justify-content:center;width:100%;margin-top:2px}
+ .apps{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .app-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px;border-radius:18px;box-shadow:3px 3px 0 var(--sh)}
+ .app-card .ic{width:46px;height:46px;border-radius:15px;transform:none!important}
+ .app-card h3{margin:2px 0 0;font-size:15px;line-height:1.2;overflow-wrap:anywhere}
+ .app-card p{display:block;flex:1 1 auto;font-size:12px;line-height:1.35;margin:0 0 4px}
+ .app-card .pill{font-size:11px;padding:1px 8px;gap:5px}
+ .app-card .pill.ok{display:none}
+ .app-card .sub{display:none}
+ .app-card .btn{width:100%;min-height:40px;padding:6px 8px;font-size:12.5px;margin-top:auto;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--sh)}
+ .app-card .btn::after{content:"";position:absolute;inset:0;border-radius:18px}
+ .app-card:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sh)}
+ .app-card .btn[aria-disabled=true]{box-shadow:none}
  .info .card{padding:14px}
  .lst{font-size:14px;padding-left:18px}
  .lst li{margin:5px 0}
@@ -164,12 +170,15 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  .foot{margin-top:24px}
  /* bilah navigasi bawah */
  .bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:2.5px solid var(--bd);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));gap:4px}
- .bnav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;background:none;border:2px solid transparent;border-radius:14px;color:var(--mut);font-size:11px;font-weight:800;cursor:pointer;line-height:1.1;padding:4px 2px}
- .bnav button span{font-size:20px;line-height:1}
- .bnav button.on{background:var(--sun);color:#1d2b4f;border-color:var(--bd)}
+ .bnav button{margin:0;width:auto;box-shadow:none;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;background:none;border:2px solid transparent;border-radius:14px;color:var(--mut);font-size:11px;font-weight:800;cursor:pointer;line-height:1.1;padding:4px 2px}
+ .bnav button span{font-size:20px;line-height:1;width:auto}
+ .bnav button:hover{background:none}
+ .bnav button.on:hover{background:var(--sun)}
+ .bnav button.on{background:var(--sun);color:#1d2b4f;border-color:var(--bd);box-shadow:none}
  .bnav button:active{transform:scale(.95)}
 }
 @media (max-width:360px){
+ .apps{gap:8px}.app-card{padding:10px}.app-card h3{font-size:14px}
  .mascot{width:52px}
  .stat b{font-size:21px}
  .bnav button{font-size:10px}
@@ -406,10 +415,10 @@ function renderRep(){
  var n=0,h=REP.map(function(x){var k=x[0],d=stat(k),u=S.urls[k],c;
   if(d)n++;
   var body;
-  if(!d)body='<p class="empty">💤 '+esc(why([k]))+'</p>';
+  if(!d)body='<p class="empty">💤 '+esc(why([k]))+'</p><p class="sub" style="margin-top:6px">'+dstat(k)+'</p>';
   else{c=x[2](d.stats);body=(c.b?bar(c.b[0],c.b[1]):'')+rr(c.r||[])+(c.x||'');
    if(!body)body='<p class="empty">Data diterima, tetapi belum berisi angka untuk laporan ini.</p>'}
-  return '<div class="card rcard"><h3>'+x[1]+'</h3>'+body+'<p class="sub">'+dstat(k)+'</p>'+
+  return '<div class="card rcard"><h3>'+x[1]+'</h3>'+body+(d?'<p class="sub">'+dstat(k)+'</p>':'')+
    (valid(u)?'<a class="btn ghost" target="_blank" rel="noopener" href="'+esc(u)+'">Buka aplikasi</a>':'<a class="btn ghost" aria-disabled="true" href="#" data-set="1">Atur URL dulu</a>')+'</div>'}).join('');
  $('repBody').innerHTML=h;
  $('repInfo').textContent=S.name+' · Tahun pelajaran '+S.year+' · '+n+' dari '+REP.length+' aplikasi sudah mengirim data · '+new Date().toLocaleString('id-ID',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
