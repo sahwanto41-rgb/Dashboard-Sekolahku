@@ -205,6 +205,41 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
 @media (hover:none){.app-card:hover .ic{transform:none}h1:hover{transform:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+/* ===== Green Office (banner beranda + chip menu samping) ===== */
+:root{--g1:#0b6b45;--g2:#17a46a;--g3:#8fdc5a;--gk:#07402b}
+:root[data-theme=dark]{--g1:#072f21;--g2:#0f6a49;--g3:#3d7f2c;--gk:#021a12}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--g1:#072f21;--g2:#0f6a49;--g3:#3d7f2c;--gk:#021a12}}
+.gob{position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;gap:24px;margin-bottom:22px;padding:18px 28px 18px 20px;border:3px solid var(--bd);border-radius:28px;background:linear-gradient(115deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);box-shadow:5px 5px 0 var(--sh);color:#fff}
+.gob::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.26) 1.5px,transparent 1.7px);background-size:18px 18px;-webkit-mask-image:linear-gradient(90deg,transparent 15%,#000 100%);mask-image:linear-gradient(90deg,transparent 15%,#000 100%)}
+.gob .deco{position:absolute;z-index:-1;fill:#fff;opacity:.2;pointer-events:none}
+.gob .d1{right:-22px;top:-30px;width:230px;transform:rotate(18deg)}
+.gob .d2{right:150px;bottom:-26px;width:110px;transform:rotate(-30deg);opacity:.14}
+.gob-emb{flex:none;width:112px;height:112px;border-radius:50%;background:var(--card);border:3px solid var(--bd);box-shadow:4px 4px 0 var(--gk)}
+.gob-emb svg{display:block;width:100%;height:100%;overflow:visible}
+.gob-emb .rt{font:800 8.2px 'Baloo 2','Nunito',sans-serif;fill:var(--ink)}
+.gob-ring{transform-origin:50px 50px;transform-box:view-box}
+.gob-main{flex:1;min-width:0}
+.gob-k{font:800 12px/1.2 'Nunito',system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#dcffe9}
+.gob-w{margin:4px 0 10px;font-family:'Baloo 2','Nunito',system-ui,sans-serif;font-weight:800;font-size:clamp(36px,5.6vw,64px);line-height:1;letter-spacing:.01em;color:#fff;-webkit-text-stroke:.05em var(--gk);paint-order:stroke fill;text-shadow:.03em .03em 0 var(--gk),.06em .06em 0 var(--gk),.09em .09em 0 var(--gk),.12em .12em 0 var(--gk),.15em .15em 0 var(--gk),.18em .18em 0 var(--gk)}
+.gob-w span{color:#ffd666}
+.gob-chips{display:flex;flex-wrap:wrap;gap:8px}
+.gob-chips span{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;background:var(--card);color:var(--ink);border:2px solid var(--bd);box-shadow:2px 2px 0 var(--gk);font-size:12.5px;font-weight:800;line-height:1.3}
+.gchip{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:2px 10px 2px 4px;border-radius:99px;background:#9be8c4;color:#0f3a2a;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border:2px solid #fff}
+.gchip svg{width:16px;height:16px;padding:2px;border-radius:50%;background:#139a62;fill:#fff}
+@keyframes gobSpin{to{transform:rotate(360deg)}}
+@keyframes gobFloat{50%{transform:translateY(-6px) rotate(24deg)}}
+@media(prefers-reduced-motion:no-preference){.gob-ring{animation:gobSpin 26s linear infinite}.gob .d1{animation:gobFloat 7s ease-in-out infinite}}
+@media(max-width:820px){
+ .gob{gap:12px;padding:12px 14px 12px 12px;border-radius:22px;margin-bottom:14px;box-shadow:4px 4px 0 var(--sh)}
+ .gob-emb{width:72px;height:72px;box-shadow:3px 3px 0 var(--gk)}
+ .gob-k{font-size:9.5px;letter-spacing:.16em}
+ .gob-w{font-size:clamp(24px,8.2vw,36px);margin:3px 0 8px;white-space:nowrap}
+ .gob-chips{gap:6px}.gob-chips span{font-size:11px;padding:3px 9px;gap:4px}
+ .gob .d1{width:150px}.gob .d2{display:none}
+}
+@media (max-width:360px){.gob-emb{width:60px;height:60px}.gob-chips span{font-size:10.5px}}
+@media print{.gob-ring{animation:none}}
+
 /* ===== Kredit ©U~1 (gaya stiker, ukuran pas layar HP) ===== */
 .cr-wrap{display:flex;justify-content:center;margin:10px 0 6px}
 .cr{position:relative;display:inline-block;padding:5px 12px 6px 10px;border:2px solid var(--bd);border-radius:999px;line-height:1;white-space:nowrap;
@@ -228,7 +263,7 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
 <body>
 <div class="app">
 <aside id="side" aria-label="Navigasi utama">
- <div class="brand"><div class="logo" id="logoSide">L1</div><div>SDN Lanas 1<br><small style="font-weight:400;color:#cfdcee">Botolinggo, Bondowoso</small></div></div>
+ <div class="brand"><div class="logo" id="logoSide">L1</div><div>SDN Lanas 1<br><small style="font-weight:400;color:#cfdcee">Botolinggo, Bondowoso</small><br><div class="gchip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C10.5 4 4.5 9.5 4.5 16.5c0 1.2.2 2.2.6 3.2 1 .4 2 .6 3.1.6C15 20.3 20 14.5 20 4z"/><path class="vn" style="display:none" d="M5 19.5C8.5 14 12 11 16 8.5"/></svg>Green Office</div></div></div>
  <nav id="nav"></nav>
 </aside>
 <div class="scrim" id="scrim"></div>
@@ -246,6 +281,7 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  </header>
 
  <section id="v-home" data-sub="main">
+  <div class="gob" role="note" aria-label="Green Office"><svg class="deco d1" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C10.5 4 4.5 9.5 4.5 16.5c0 1.2.2 2.2.6 3.2 1 .4 2 .6 3.1.6C15 20.3 20 14.5 20 4z"/></svg><svg class="deco d2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C10.5 4 4.5 9.5 4.5 16.5c0 1.2.2 2.2.6 3.2 1 .4 2 .6 3.1.6C15 20.3 20 14.5 20 4z"/></svg><div class="gob-emb" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="gobp" d="M50 9a41 41 0 1 1 0 82a41 41 0 1 1 0-82"/></defs><g class="gob-ring"><text class="rt"><textPath href="#gobp" textLength="250" lengthAdjust="spacing">GREEN OFFICE • KERJA DIGITAL • BUMI LESTARI • </textPath></text></g><circle cx="50" cy="50" r="29" fill="#d9ffe6" stroke="#07402b" stroke-width="2.5"/><path d="M50 70V50" stroke="#07402b" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M50 57C38 58 31 51 31 39c12 0 19 7 19 18z" fill="#17a46a" stroke="#07402b" stroke-width="2.5" stroke-linejoin="round"/><path d="M50 51C50 37 58 30 71 30c0 13-8 21-21 21z" fill="#8fdc5a" stroke="#07402b" stroke-width="2.5" stroke-linejoin="round"/></svg></div><div class="gob-main"><div class="gob-k">Kantor Digital Ramah Lingkungan</div><div class="gob-w">Green <span>Office</span></div><div class="gob-chips"><span>♻️ Paperless</span><span>⚡ Hemat Energi</span><span>🌱 Ramah Lingkungan</span></div></div></div>
   <div class="card hero"><div class="mascot" id="mascot"></div><div class="bubble"><p class="hi" id="hi"></p><p class="tip" id="tip"></p></div></div>
   <div class="grid stats" id="stats"></div>
   <h2 id="appsH">Aplikasi digital sekolah</h2>
