@@ -160,6 +160,7 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  .app-card .ic{width:46px;height:46px;border-radius:15px;transform:none!important}
  .app-card h3{margin:2px 0 0;font-size:15px;line-height:1.2;overflow-wrap:anywhere}
  .app-card p{display:block;flex:1 1 auto;font-size:12px;line-height:1.35;margin:0 0 4px}
+ #apps .app-card:last-child:nth-child(odd){grid-column:1/-1}
  .app-card .pill{font-size:11px;padding:1px 8px;gap:5px}
  .app-card .pill.ok{display:none}
  .app-card .sub{display:none}
@@ -278,6 +279,7 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
      <li><b>Administrator:</b> isi URL asli tiap aplikasi di kolom sebelah, lalu simpan.</li>
      <li><b>Kepala sekolah dan guru:</b> klik BUKA APLIKASI pada kartu, atau pilih menu di kiri.</li>
      <li><b>Presensi Pegawai dan Analisis Hasil Asesmen:</b> isi URL-nya di kolom sebelah, seperti aplikasi lain.</li>
+     <li><b>MEKAR:</b> isi URL hosting MEKAR di kolom sebelah, lalu simpan. MEKAR belum punya URL data JSON, jadi tidak tampil di statistik.</li>
      <li><b>Statistik:</b> angka hanya muncul setelah aplikasi sumber mengirim data lewat API. Isi URL data JSON dari Apps Script agar angka tampil. Sebelum itu tertulis Belum Terhubung.</li>
      <li><b>Pemasangan:</b> unggah file ini ke hosting mana pun, atau bagikan tautan halaman ini.</li>
      <li><b>Hak akses dan login:</b> masuk lewat akun tiap aplikasi. Login terpusat perlu server (lihat catatan pengembangan).</li>
@@ -307,6 +309,7 @@ var APPS=[
  {k:'sipas',n:'SIPAS SDN Lanas 1',d:'Surat masuk dan surat keluar, disposisi kepala sekolah.',m:'Surat',p:'M4 6h16v12H4zM4 7l8 6 8-6'},
  {k:'presensi',n:'Presensi Murid',d:'Kehadiran harian: hadir, izin, sakit, alpa per kelas.',m:'Presensi',p:'M9 12l2 2 4-4M12 3a9 9 0 100 18 9 9 0 000-18z'},
  {k:'pegawai',n:'Presensi Pegawai',d:'Kehadiran harian guru dan tenaga kependidikan: hadir, izin, sakit, dinas luar.',m:'Pegawai',p:'M3 5h18v14H3zM8 11a2 2 0 100-4 2 2 0 000 4zM5 16c0-2 6-2 6 0M14 9h4M14 13h4'},
+ {k:'mekar',n:'MEKAR',s:'Modul Ajar Efektif, Kreatif, Adaptif, Reflektif',d:'Penyusun modul ajar pembelajaran mendalam: dokumen, penilaian proses, dan ekspor DOCX/PDF.',m:'MEKAR',p:'M12 8.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7zM12 8.5C10.5 6 10.5 4 12 3c1.5 1 1.5 3 0 5.5zM12 15.5c-1.5 2.5-1.5 4.5 0 5.5 1.5-1 1.5-3 0-5.5zM8.5 12C6 10.5 4 10.5 3 12c1 1.5 3 1.5 5.5 0zM15.5 12c2.5 1.5 4.5 1.5 5.5 0-1-1.5-3-1.5-5.5 0z'},
  {k:'pra',n:'Praobservasi Pembelajaran',d:'Telaah perencanaan pembelajaran dan jadwal praobservasi.',m:'Praobservasi',p:'M6 3h9l4 4v14H6zM9 12h7M9 16h7'},
  {k:'obs',n:'Observasi Pembelajaran',d:'Supervisi pelaksanaan, umpan balik, dan tindak lanjut.',m:'Observasi',p:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z'},
  {k:'jurnal',n:'Jurnal Mengajar Guru',d:'Jurnal harian: kelas, mata pelajaran, materi, jam mengajar.',m:'Jurnal',p:'M5 4h12a2 2 0 012 2v14H7a2 2 0 01-2-2zM9 8h6'},
@@ -323,9 +326,9 @@ var APPS=[
  {k:'myasn',l:1,n:'My ASN',d:'Layanan mandiri data kepegawaian ASN dari BKN.',m:'My ASN',p:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-4 4-6 8-6s8 2 8 6'},
  {k:'pmm',l:1,n:'Platform Merdeka Mengajar (PMM)',d:'Pelatihan mandiri, perangkat ajar, dan komunitas belajar untuk guru.',m:'PMM',p:'M12 5C10 3.5 6.5 3.5 4 4.5v14c2.5-1 6-1 8 .5 2-1.5 5.5-1.5 8-.5v-14c-2.5-1-6-1-8 .5zM12 5v14'}
 ];
-var COL={sipas:'sky',presensi:'mint',pegawai:'teal',pra:'lav',obs:'pink',jurnal:'peach',notula:'lime',prestasi:'sun',asesmen:'blue',jadwal:'teal',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
+var COL={sipas:'sky',presensi:'mint',pegawai:'teal',mekar:'sun',pra:'lav',obs:'pink',jurnal:'peach',notula:'lime',prestasi:'sun',asesmen:'blue',jadwal:'teal',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
 function prog(d){return d.sudah==null?null:d.sudah+' dari '+d.total}
-var STATS=[['Total surat masuk','sipas',function(d){return d.suratMasuk!=null?d.suratMasuk:d.masuk}],['Total surat keluar','sipas',function(d){return d.suratKeluar!=null?d.suratKeluar:d.keluar}],['Kehadiran murid','presensi',function(d){return d.persen==null?null:d.persen+'%'}],['Progres praobservasi','pra',prog],['Progres observasi','obs',prog],['Pengisian jurnal','jurnal',function(d){return d.terisi==null?null:d.terisi+' dari '+d.total}],['Kehadiran pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}]];
+var STATS=[['Total surat masuk','sipas',function(d){return d.suratMasuk!=null?d.suratMasuk:d.masuk}],['Total surat keluar','sipas',function(d){return d.suratKeluar!=null?d.suratKeluar:d.keluar}],['Kehadiran murid','presensi',function(d){return d.persen==null?null:d.persen+'%'}],['Progres praobservasi','pra',prog],['Progres observasi','obs',prog],['Pengisian jurnal','jurnal',function(d){return d.terisi==null?null:d.terisi+' dari '+d.total}],['Kehadiran pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}],['Modul ajar MEKAR','mekar',function(d){return d.total==null?null:d.total+' modul'}]];
 var D={};
 function load(){APPS.forEach(function(a){var u=S.api[a.k];if(!valid(u)){delete D[a.k];return}
  fetch(u).then(function(r){return r.json()}).then(function(j){D[a.k]={stats:j.stats||j,updated:j.updated};render()}).catch(function(){D[a.k]={err:1};render()})});render()}
@@ -367,7 +370,7 @@ var IB=[
 ];
 /* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
 var DEF={
- v:10, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ v:12, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
  urls:{
   sipas:'https://sahwanto41-rgb.github.io/Sipas-SDN-Lanas-1/',      /* URL SIPAS */
   presensi:'https://sahwanto41-rgb.github.io/Presensi-Murid-SDN-Lanas-1/',   /* URL Presensi Murid */
@@ -377,6 +380,7 @@ var DEF={
   notula:'https://sahwanto41-rgb.github.io/Notula-Rapat/',     /* URL Notula Rapat */
   prestasi:'https://effulgent-fudge-c83eb5.netlify.app/',    /* URL Prestasi Murid */
   pegawai:'https://sahwanto41-rgb.github.io/SIPP_Pegawai/',    /* URL Presensi Pegawai */
+  mekar:'https://sahwanto41-rgb.github.io/RPP-Modul-Ajar-Deep-Learning/',    /* URL MEKAR */
   asesmen:'https://sahwanto41-rgb.github.io/Hasil-Asesmen-dan-Analisis/',    /* URL Analisis Hasil Asesmen */
   jadwal:'https://sahwanto41-rgb.github.io/Jadwal-Pelajaran-SMART/',    /* URL SMART */
   tiktok:'https://www.tiktok.com/@_las_one_',    /* URL TikTok */
@@ -397,6 +401,7 @@ var DEF={
   notula:'https://script.google.com/macros/s/AKfycby7lwsvumd8ruCC1VdjEEOD_U1JTvWCavG47qfMrdzpPLHk7G3z88DHoFEWJSgKUPEV/exec?aksi=statistik',
   prestasi:'',
   pegawai:'https://script.google.com/macros/s/AKfycbzT8VLzyOYRVuNUKdgBLKKqLPTIjgQpDyIWcvfB4OmLFD89rc3qOU2f1UU8hnQnuFArsA/exec?aksi=stats',
+  mekar:'https://script.google.com/macros/s/AKfycbznM65dOny2D3JxkEqQhAI5YY8VHaFSsiDZPGOoArY1oa1V7c9DTORg8yNVHGo82oSRCQ/exec?aksi=stats',
   asesmen:'https://script.google.com/macros/s/AKfycbxfwp64403sjNYtOZUQQY-89iTI6S6gnx8q1BDDHumAdkMaWZgn3mUDTrzwhrqonRUYHw/exec?aksi=stats',
   jadwal:'',
   tiktok:'',
@@ -419,7 +424,7 @@ function ico(p){return '<svg width="24" height="24" viewBox="0 0 24 24" fill="no
 function valid(u){return /^https?:\/\//i.test(u||'')}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var OWL='<svg viewBox="0 0 96 96" aria-hidden="true"><ellipse cx="38" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="58" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="48" cy="60" rx="30" ry="29" fill="#ffd666" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="48" cy="73" rx="17" ry="14" fill="#fff3c4"/><path d="M19 58c-6 6-6 18 2 24 4-8 5-16 3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M77 58c6 6 6 18-2 24-4-8-5-16-3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><g class="eyes"><circle cx="36" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="60" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="38" cy="55" r="5" fill="#1d2b4f"/><circle cx="62" cy="55" r="5" fill="#1d2b4f"/><circle cx="39.6" cy="53" r="1.7" fill="#fff"/><circle cx="63.6" cy="53" r="1.7" fill="#fff"/></g><path d="M44 63l4 7 4-7z" fill="#ff8a5b" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="65" r="4" fill="#ff9fc0"/><circle cx="71" cy="65" r="4" fill="#ff9fc0"/><path d="M35 32v6c0 4 26 4 26 0v-6z" fill="#2c3f73" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 26L48 13l26 13-26 13z" fill="#1d2b4f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M72 27v13" stroke="#ff9fc0" stroke-width="3" stroke-linecap="round"/><circle cx="72" cy="42" r="3.2" fill="#ff9fc0"/></svg>';
-var SE=['📥','📤','🙋','📝','👀','📒','🪪','📈','🗒️'],IE=['📢','🗓️','📒','🙋','🧾','📌'],NE=['🏠','✉️','✅','🪪','📝','👀','📒','🗒️','🏆','📈','🗓️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
+var SE=['📥','📤','🙋','📝','👀','📒','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','📒','🙋','🧾','📌'],NE=['🏠','✉️','✅','🪪','🌸','📝','👀','📒','🗒️','🏆','📈','🗓️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
 var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Jurnal sudah diisi? Si Bijak mengintip, lho.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
 function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
  $('mascot').innerHTML=OWL;$('hi').textContent='Selamat '+g+'! Siap mencerdaskan bangsa?';$('tip').textContent=TIPS[d.getDate()%TIPS.length]}
@@ -456,7 +461,8 @@ var REP=[
  ['jurnal','📒 Jurnal mengajar hari ini',function(d){var bl=Array.isArray(d.belum)?d.belum:null;
   return {b:pbar(d.terisi,d.total,'Sudah mengisi'),r:[['Sudah mengisi',d.terisi],['Belum mengisi',bl?bl.length:null]],x:bl&&bl.length?'<p class="empty" style="margin-top:6px">Belum mengisi:</p>'+lst(bl.slice(0,10).map(esc))+(bl.length>10?'<p class="empty">dan '+(bl.length-10)+' guru lainnya.</p>':''):''}}],
  ['asesmen','📈 Analisis hasil asesmen',function(d){return {b:perc(d,'Ketuntasan'),r:[]}}],
- ['notula','🗒️ Notula rapat',function(d){return {r:[['Total rapat tercatat',d.total]]}}]
+ ['notula','🗒️ Notula rapat',function(d){return {r:[['Total rapat tercatat',d.total]]}}],
+ ['mekar','🌸 MEKAR: modul ajar',function(d){return {b:pbar(d.final,d.total,'Berstatus Final'),r:[['Total modul ajar',d.total],['Final',d.final],['Draf dan revisi',d.draf],['Guru penyusun',d.guru],['Akun guru aktif',d.akun],['Permintaan AI hari ini',d.ai]]}}]
 ];
 function renderRep(){
  var n=0,h=REP.map(function(x){var k=x[0],d=stat(k),u=S.urls[k],c;
@@ -470,7 +476,7 @@ function renderRep(){
  $('repBody').innerHTML=h;
  $('repInfo').textContent=S.name+' · Tahun pelajaran '+S.year+' · '+n+' dari '+REP.length+' aplikasi sudah mengirim data · '+new Date().toLocaleString('id-ID',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
 }
-var NAV=[['Dashboard Utama','home'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Presensi Pegawai','app:pegawai'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['Jurnal Mengajar','app:jurnal'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Analisis Hasil Asesmen','app:asesmen'],['SMART','app:jadwal'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB','app:spmb'],['Rapor Pendidikan','app:rapor'],['Rumah Pendidikan','app:rumah'],['My ASN','app:myasn'],['PMM','app:pmm'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
+var NAV=[['Dashboard Utama','home'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Presensi Pegawai','app:pegawai'],['MEKAR: Modul Ajar','app:mekar'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['Jurnal Mengajar','app:jurnal'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Analisis Hasil Asesmen','app:asesmen'],['SMART','app:jadwal'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB','app:spmb'],['Rapor Pendidikan','app:rapor'],['Rumah Pendidikan','app:rumah'],['My ASN','app:myasn'],['PMM','app:pmm'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
 $('nav').innerHTML=NAV.map(function(n,i){return '<button data-t="'+n[1]+'"'+(i==0?' class="on"':'')+'><span aria-hidden="true">'+NE[i]+'</span>'+n[0]+'</button>'}).join('');
 function show(v){var vv=v==='apps'?'home':v;$('v-home').dataset.sub=v==='apps'?'apps':'main';['home','rep','set'].forEach(function(x){$('v-'+x).classList.toggle('hide',x!==vv)});
  document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===v)});
