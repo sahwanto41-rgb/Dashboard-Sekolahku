@@ -349,7 +349,7 @@ var APPS=[
  {k:'mekar',n:'MEKAR',s:'Modul Ajar Efektif, Kreatif, Adaptif, Reflektif',d:'Penyusun modul ajar pembelajaran mendalam: dokumen, penilaian proses, dan ekspor DOCX/PDF.',m:'MEKAR',p:'M12 8.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7zM12 8.5C10.5 6 10.5 4 12 3c1.5 1 1.5 3 0 5.5zM12 15.5c-1.5 2.5-1.5 4.5 0 5.5 1.5-1 1.5-3 0-5.5zM8.5 12C6 10.5 4 10.5 3 12c1 1.5 3 1.5 5.5 0zM15.5 12c2.5 1.5 4.5 1.5 5.5 0-1-1.5-3-1.5-5.5 0z'},
  {k:'pra',n:'Praobservasi Pembelajaran',d:'Telaah perencanaan pembelajaran dan jadwal praobservasi.',m:'Praobservasi',p:'M6 3h9l4 4v14H6zM9 12h7M9 16h7'},
  {k:'obs',n:'Observasi Pembelajaran',d:'Supervisi pelaksanaan, umpan balik, dan tindak lanjut.',m:'Observasi',p:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z'},
- {k:'jurnal',n:'Jurnal Mengajar Guru',d:'Jurnal harian: kelas, mata pelajaran, materi, jam mengajar.',m:'Jurnal',p:'M5 4h12a2 2 0 012 2v14H7a2 2 0 01-2-2zM9 8h6'},
+ {k:'sipena',n:'SIPENA',s:'Sistem Perencanaan Pembelajaran',d:'Perencanaan pembelajaran guru: kalender pendidikan, minggu efektif, capaian pembelajaran, ATP, Prota, dan Prosem dengan bantuan CERDAS AI.',m:'SIPENA',p:'M3 19c3-1.5 6-1.5 9 .5 3-2 6-2 9-.5V10c-3-1.5-6-1.5-9 .5-3-2-6-2-9-.5zM12 10.5V19.5M17.5 2.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z'},
  {k:'notula',n:'Notula Rapat',d:'Catatan rapat: agenda, pembahasan, keputusan, dan tindak lanjut.',m:'Notula',p:'M7 4h10a2 2 0 012 2v14l-4-2-3 2-3-2-4 2V6a2 2 0 012-2zM9 9h6M9 13h4'},
  {k:'prestasi',n:'Prestasi Murid',d:'Data prestasi akademik dan nonakademik murid, tingkat lomba, dan capaian.',m:'Prestasi',p:'M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3'},
  {k:'asesmen',n:'Analisis Hasil Asesmen',d:'Olah nilai asesmen, analisis ketuntasan tujuan pembelajaran, perbaikan dan pengayaan.',m:'Asesmen',p:'M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3'},
@@ -363,16 +363,16 @@ var APPS=[
  {k:'myasn',l:1,n:'My ASN',d:'Layanan mandiri data kepegawaian ASN dari BKN.',m:'My ASN',p:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-4 4-6 8-6s8 2 8 6'},
  {k:'pmm',l:1,n:'Platform Merdeka Mengajar (PMM)',d:'Pelatihan mandiri, perangkat ajar, dan komunitas belajar untuk guru.',m:'PMM',p:'M12 5C10 3.5 6.5 3.5 4 4.5v14c2.5-1 6-1 8 .5 2-1.5 5.5-1.5 8-.5v-14c-2.5-1-6-1-8 .5zM12 5v14'}
 ];
-var COL={sipas:'sky',presensi:'mint',pegawai:'teal',mekar:'sun',pra:'lav',obs:'pink',jurnal:'peach',notula:'lime',prestasi:'sun',asesmen:'blue',jadwal:'teal',siduk:'blue',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
+var COL={sipas:'sky',presensi:'mint',pegawai:'teal',mekar:'sun',pra:'lav',obs:'pink',sipena:'peach',notula:'lime',prestasi:'sun',asesmen:'blue',jadwal:'teal',siduk:'blue',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
 function prog(d){return d.sudah==null?null:d.sudah+' dari '+d.total}
-var STATS=[['Total surat masuk','sipas',function(d){return d.suratMasuk!=null?d.suratMasuk:d.masuk}],['Total surat keluar','sipas',function(d){return d.suratKeluar!=null?d.suratKeluar:d.keluar}],['Kehadiran murid','presensi',function(d){return d.persen==null?null:d.persen+'%'}],['Progres praobservasi','pra',prog],['Progres observasi','obs',prog],['Pengisian jurnal','jurnal',function(d){return d.terisi==null?null:d.terisi+' dari '+d.total}],['Kehadiran pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}],['Modul ajar MEKAR','mekar',function(d){return d.total==null?null:d.total+' modul'}]];
+var STATS=[['Total surat masuk','sipas',function(d){return d.suratMasuk!=null?d.suratMasuk:d.masuk}],['Total surat keluar','sipas',function(d){return d.suratKeluar!=null?d.suratKeluar:d.keluar}],['Kehadiran murid','presensi',function(d){return d.persen==null?null:d.persen+'%'}],['Progres praobservasi','pra',prog],['Progres observasi','obs',prog],['Kehadiran pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}],['Modul ajar MEKAR','mekar',function(d){return d.total==null?null:d.total+' modul'}]];
 var D={};
 function load(){APPS.forEach(function(a){var u=S.api[a.k];if(!valid(u)){delete D[a.k];return}
  fetch(u).then(function(r){return r.json()}).then(function(j){D[a.k]={stats:j.stats||j,updated:j.updated};render()}).catch(function(){D[a.k]={err:1};render()})});render()}
 function fmtUp(u){if(/^\d{4}-\d{2}-\d{2}T/.test(u)){var t=new Date(u);if(!isNaN(t))return t.toLocaleString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}return u}
 function stat(k){var d=D[k];return d&&d.stats?d:null}
 function dstat(k){var d=D[k];if(!valid(S.api[k]))return 'Data: Belum Terhubung';if(!d)return 'Data: memuat...';if(d.err)return 'Data: gagal diambil. Buka URL data di peramban: harus tampil JSON, bukan halaman login. Deploy Apps Script dengan akses Anyone.';if((k==='pra'||k==='obs')&&d.stats&&d.stats.sudah==null)return 'Data diterima, tapi field sudah dan total tidak ada. Field yang diterima: '+(typeof d.stats==='object'?esc(Object.keys(d.stats).join(', ')||'(kosong)'):'bukan JSON objek');return 'Data terhubung'+(d.updated?', diperbarui '+esc(fmtUp(d.updated)):'')}
-var INFO=['Pengumuman sekolah','Jadwal supervisi','Pengingat pengisian jurnal','Informasi presensi murid','Aktivitas administrasi terbaru','Tugas yang belum selesai'];
+var INFO=['Pengumuman sekolah','Jadwal supervisi','Informasi presensi murid','Aktivitas administrasi terbaru','Tugas yang belum selesai'];
 /* Pengumuman: isi manual di sini (satu kalimat per baris), lalu naikkan DEF.v */
 var ANN=[];
 function fv(k,f){var d=stat(k);return d&&d.stats[f]!=null?d.stats[f]:null}
@@ -390,30 +390,25 @@ var IB=[
   if(!ok)return null;if(!a.length)return 'Tidak ada jadwal supervisi mendatang.';
   a.sort(function(x,y){return String(x.tgl).localeCompare(String(y.tgl))});
   return lst(a.slice(0,6).map(function(x){return '<b>'+fd(x.tgl)+'</b> · '+esc(x._n)+': '+esc(x.guru||'')+(x.kelas?' <small>(kelas '+esc(x.kelas)+')</small>':'')}))}},
- {ks:['jurnal'],f:function(){var b=fv('jurnal','belum'),t=fv('jurnal','terisi'),n=fv('jurnal','total');
-  if(b==null&&t==null)return null;var h=t!=null?'<p class="empty"><b>'+t+' dari '+n+'</b> guru sudah mengisi jurnal hari ini.</p>':'';
-  if(b&&b.length)h+='<p class="empty" style="margin-top:6px">Belum mengisi:</p>'+lst(b.slice(0,8).map(esc))+(b.length>8?'<p class="empty">dan '+(b.length-8)+' guru lainnya.</p>':'');
-  else if(b)h+='<p class="empty">Semua guru sudah mengisi 🎉</p>';return h}},
  {ks:['presensi'],f:function(){var h=fv('presensi','hadir');if(h==null&&fv('presensi','persen')==null)return null;
   var p=[];['hadir','izin','sakit','alpa'].forEach(function(f){var v=fv('presensi',f);if(v!=null)p.push(f.charAt(0).toUpperCase()+f.slice(1)+' <b>'+v+'</b>')});
   var r=fv('presensi','persen');return '<p class="empty">'+(p.join(' · ')||'')+(r!=null?(p.length?'<br>':'')+'Kehadiran <b>'+esc(r)+'%</b>':'')+'</p>'}},
  {ks:['sipas'],f:function(){var t=fv('sipas','terbaru');if(!t)return null;if(!t.length)return 'Belum ada aktivitas.';
   return lst(t.slice(0,5).map(function(x){return '<b>'+esc(x.jenis||'')+'</b> · '+esc(x.perihal||'')+(x.tgl?' <small>'+fd(x.tgl)+'</small>':'')}))}},
- {ks:['jurnal','pra','obs','sipas'],f:function(){var a=[],b=fv('jurnal','belum'),d=fv('sipas','belumDisposisi'),any=false;
-  if(b){any=true;if(b.length)a.push('Jurnal hari ini belum diisi: <b>'+b.length+'</b> guru')}
+ {ks:['pra','obs','sipas'],f:function(){var a=[],d=fv('sipas','belumDisposisi'),any=false;
   [['pra','Praobservasi'],['obs','Observasi']].forEach(function(p){var s=fv(p[0],'sudah'),t=fv(p[0],'total');if(s!=null&&t!=null){any=true;if(t-s>0)a.push(p[1]+' belum selesai: <b>'+(t-s)+'</b> guru')}});
   if(d!=null){any=true;if(d>0)a.push('Surat belum didisposisi: <b>'+d+'</b>')}
   if(!any)return null;return a.length?lst(a):'Semua tugas terpantau selesai 🎉'}}
 ];
 /* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
 var DEF={
- v:13, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ v:14, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
  urls:{
   sipas:'https://sahwanto41-rgb.github.io/Sipas-SDN-Lanas-1/',      /* URL SIPAS */
   presensi:'https://sahwanto41-rgb.github.io/Presensi-Murid-SDN-Lanas-1/',   /* URL Presensi Murid */
   pra:'https://sahwanto41-rgb.github.io/Supervisi-Perencanaan/',        /* URL Praobservasi */
   obs:'https://sahwanto41-rgb.github.io/Supervisi-Pembelajaran/',        /* URL Observasi */
-  jurnal:'https://sahwanto41-rgb.github.io/Jurnal-Mengajar-Guru/',     /* URL Jurnal Mengajar */
+  sipena:'',     /* URL SIPENA: isi alamat aplikasi SIPENA, lalu naikkan angka v */
   notula:'https://sahwanto41-rgb.github.io/Notula-Rapat/',     /* URL Notula Rapat */
   prestasi:'https://effulgent-fudge-c83eb5.netlify.app/',    /* URL Prestasi Murid */
   pegawai:'https://sahwanto41-rgb.github.io/SIPP_Pegawai/',    /* URL Presensi Pegawai */
@@ -435,7 +430,7 @@ var DEF={
   presensi:'https://script.google.com/macros/s/AKfycbwOEzClk7BB6T9tMe32acjUKI1-XyZZO88eYZpaeA1gbPIng0R3jFR3fwox8YsAOkF6AA/exec?aksi=stats',
   pra:'https://script.google.com/macros/s/AKfycbyXWF07q-C0lEhFQTR4_3K6a5Qj2CNV85C2aIP9X-GBvsuWe--PYWmWVFSwRVxaaCFz/exec?aksi=stats',
   obs:'https://script.google.com/macros/s/AKfycbzCvuEvzDRsNGczJMeqMs4V7izGFeq_aPF7ZAJINTu2G1HHPK0Dcp4GeG24lGIOCHXxtg/exec?aksi=stats',
-  jurnal:'https://script.google.com/macros/s/AKfycbxUvdh63lky1evBhSJwKy345l2_m6LVU3hPb0TVmwRhTfnFHaN4pIYzTIjZYwtcMX4M/exec?aksi=stats',
+  sipena:'',
   notula:'https://script.google.com/macros/s/AKfycby7lwsvumd8ruCC1VdjEEOD_U1JTvWCavG47qfMrdzpPLHk7G3z88DHoFEWJSgKUPEV/exec?aksi=statistik',
   prestasi:'',
   pegawai:'https://script.google.com/macros/s/AKfycbzT8VLzyOYRVuNUKdgBLKKqLPTIjgQpDyIWcvfB4OmLFD89rc3qOU2f1UU8hnQnuFArsA/exec?aksi=stats',
@@ -463,8 +458,8 @@ function ico(p){return '<svg width="24" height="24" viewBox="0 0 24 24" fill="no
 function valid(u){return /^https?:\/\//i.test(u||'')}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var OWL='<svg viewBox="0 0 96 96" aria-hidden="true"><ellipse cx="38" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="58" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="48" cy="60" rx="30" ry="29" fill="#ffd666" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="48" cy="73" rx="17" ry="14" fill="#fff3c4"/><path d="M19 58c-6 6-6 18 2 24 4-8 5-16 3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M77 58c6 6 6 18-2 24-4-8-5-16-3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><g class="eyes"><circle cx="36" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="60" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="38" cy="55" r="5" fill="#1d2b4f"/><circle cx="62" cy="55" r="5" fill="#1d2b4f"/><circle cx="39.6" cy="53" r="1.7" fill="#fff"/><circle cx="63.6" cy="53" r="1.7" fill="#fff"/></g><path d="M44 63l4 7 4-7z" fill="#ff8a5b" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="65" r="4" fill="#ff9fc0"/><circle cx="71" cy="65" r="4" fill="#ff9fc0"/><path d="M35 32v6c0 4 26 4 26 0v-6z" fill="#2c3f73" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 26L48 13l26 13-26 13z" fill="#1d2b4f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M72 27v13" stroke="#ff9fc0" stroke-width="3" stroke-linecap="round"/><circle cx="72" cy="42" r="3.2" fill="#ff9fc0"/></svg>';
-var SE=['📥','📤','🙋','📝','👀','📒','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','📒','🙋','🧾','📌'],NE=['🏠','🎖️','✉️','✅','🪪','🌸','📝','👀','📒','🗒️','🏆','📈','🗓️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
-var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Jurnal sudah diisi? Si Bijak mengintip, lho.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
+var SE=['📥','📤','🙋','📝','👀','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','🙋','🧾','📌'],NE=['🏠','🎖️','✉️','✅','🪪','🌸','📝','👀','🧭','🗒️','🏆','📈','🗓️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
+var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Perencanaan matang, mengajar pun tenang.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
 function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
  $('mascot').innerHTML=OWL;$('hi').textContent='Selamat '+g+'! Siap mencerdaskan bangsa?';$('tip').textContent=TIPS[d.getDate()%TIPS.length]}
 function render(){
@@ -497,8 +492,6 @@ var REP=[
  ['pegawai','🪪 Presensi pegawai',function(d){return {b:perc(d,'Kehadiran pegawai'),r:hdk(d,['hadir','izin','sakit','dinas','dl','alpa'])}}],
  ['pra','📝 Praobservasi pembelajaran',function(d){var t=nm(d.total),s=nm(d.sudah);return {b:pbar(d.sudah,d.total,'Selesai'),r:[['Sudah',s],['Belum',t!=null&&s!=null?t-s:null]]}}],
  ['obs','👀 Observasi pembelajaran',function(d){var t=nm(d.total),s=nm(d.sudah);return {b:pbar(d.sudah,d.total,'Selesai'),r:[['Sudah',s],['Belum',t!=null&&s!=null?t-s:null]]}}],
- ['jurnal','📒 Jurnal mengajar hari ini',function(d){var bl=Array.isArray(d.belum)?d.belum:null;
-  return {b:pbar(d.terisi,d.total,'Sudah mengisi'),r:[['Sudah mengisi',d.terisi],['Belum mengisi',bl?bl.length:null]],x:bl&&bl.length?'<p class="empty" style="margin-top:6px">Belum mengisi:</p>'+lst(bl.slice(0,10).map(esc))+(bl.length>10?'<p class="empty">dan '+(bl.length-10)+' guru lainnya.</p>':''):''}}],
  ['asesmen','📈 Analisis hasil asesmen',function(d){return {b:perc(d,'Ketuntasan'),r:[]}}],
  ['notula','🗒️ Notula rapat',function(d){return {r:[['Total rapat tercatat',d.total]]}}],
  ['mekar','🌸 MEKAR: modul ajar',function(d){return {b:pbar(d.final,d.total,'Berstatus Final'),r:[['Total modul ajar',d.total],['Final',d.final],['Draf dan revisi',d.draf],['Guru penyusun',d.guru],['Akun guru aktif',d.akun],['Permintaan AI hari ini',d.ai]]}}]
@@ -515,7 +508,7 @@ function renderRep(){
  $('repBody').innerHTML=h;
  $('repInfo').textContent=S.name+' · Tahun pelajaran '+S.year+' · '+n+' dari '+REP.length+' aplikasi sudah mengirim data · '+new Date().toLocaleString('id-ID',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
 }
-var NAV=[['Dashboard Utama','home'],['SINDUK','app:siduk'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Presensi Pegawai','app:pegawai'],['MEKAR: Modul Ajar','app:mekar'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['Jurnal Mengajar','app:jurnal'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Analisis Hasil Asesmen','app:asesmen'],['SMART','app:jadwal'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB','app:spmb'],['Rapor Pendidikan','app:rapor'],['Rumah Pendidikan','app:rumah'],['My ASN','app:myasn'],['PMM','app:pmm'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
+var NAV=[['Dashboard Utama','home'],['SINDUK','app:siduk'],['SIPAS: Surat Masuk dan Keluar','app:sipas'],['Presensi Murid','app:presensi'],['Presensi Pegawai','app:pegawai'],['MEKAR: Modul Ajar','app:mekar'],['Praobservasi Pembelajaran','app:pra'],['Observasi Pembelajaran','app:obs'],['SIPENA: Perencanaan Pembelajaran','app:sipena'],['Notula Rapat','app:notula'],['Prestasi Murid','app:prestasi'],['Analisis Hasil Asesmen','app:asesmen'],['SMART','app:jadwal'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB','app:spmb'],['Rapor Pendidikan','app:rapor'],['Rumah Pendidikan','app:rumah'],['My ASN','app:myasn'],['PMM','app:pmm'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
 $('nav').innerHTML=NAV.map(function(n,i){return '<button data-t="'+n[1]+'"'+(i==0?' class="on"':'')+'><span aria-hidden="true">'+NE[i]+'</span>'+n[0]+'</button>'}).join('');
 function show(v){var vv=v==='apps'?'home':v;$('v-home').dataset.sub=v==='apps'?'apps':'main';['home','rep','set'].forEach(function(x){$('v-'+x).classList.toggle('hide',x!==vv)});
  document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===v)});
