@@ -404,7 +404,7 @@ var IB=[
 ];
 /* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
 var DEF={
- v:21, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ v:22, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
  urls:{
   sipas:'https://sahwanto41-rgb.github.io/Sipas-SDN-Lanas-1/',      /* URL SIPAS */
   pra:'https://sahwanto41-rgb.github.io/Supervisi-Perencanaan/',        /* URL Praobservasi */
@@ -440,7 +440,7 @@ var DEF={
   asesmen:'https://script.google.com/macros/s/AKfycbxfwp64403sjNYtOZUQQY-89iTI6S6gnx8q1BDDHumAdkMaWZgn3mUDTrzwhrqonRUYHw/exec?aksi=stats',
   kilat:'https://script.google.com/macros/s/AKfycbwOEzClk7BB6T9tMe32acjUKI1-XyZZO88eYZpaeA1gbPIng0R3jFR3fwox8YsAOkF6AA/exec?aksi=stats',
   jadwal:'',
-  siduk:'',
+  siduk:'https://firestore.googleapis.com/v1/projects/gen-lang-client-0257553193/databases/ai-studio-duksmartsdnegeri-1d771735-f436-436a-bb64-ca77df9e531a/documents/statistik/ringkasan',
   lentera:'https://firestore.googleapis.com/v1/projects/lentera-murid/databases/(default)/documents/statistik/ringkasan',
   tiktok:'',
   tamu:'',
@@ -492,6 +492,7 @@ function perc(d,l){var p=nm(d.persen);return p==null?null:[p,l]}
 function hdk(d,ks){return ks.map(function(k){return [cap(k),d[k]]})}
 var REP=[
  ['sipas','📨 Surat masuk dan keluar',function(d){return {r:[['Surat masuk',d.suratMasuk!=null?d.suratMasuk:d.masuk],['Surat keluar',d.suratKeluar!=null?d.suratKeluar:d.keluar],['Belum didisposisi',d.belumDisposisi]]}}],
+ ['siduk','🎖️ SINDUK: pegawai',function(d){return {r:[['Pegawai aktif',d.total],['Guru',d.guru],['Tenaga kependidikan',d.tendik],['PNS',d.pns],['PPPK',d.pppk],['Non-ASN',d.nonAsn],['Laki-laki',d.laki],['Perempuan',d.perempuan]]}}],
  ['lentera','🎓 LENTERA MURID: data murid',function(d){return {b:pbar(d.aktif,d.total,'Murid aktif'),r:[['Total murid terdaftar',d.total],['Murid aktif',d.aktif],['Laki-laki (aktif)',d.laki],['Perempuan (aktif)',d.perempuan],['Penerima PIP',d.pip],['Mutasi masuk',d.mutasiMasuk],['Mutasi keluar',d.mutasiKeluar],['Alumni',d.alumni]]}}],
  ['kilat','⚡ KILAT: presensi scan barcode',function(d){return {b:perc(d,'Kehadiran'),r:[['Tanggal data',d.tanggal?fd(d.tanggal):null]].concat(hdk(d,['hadir','izin','sakit','alpa']),[['Tercatat',d.total],['Murid terdaftar',d.siswa],['Belum tercatat',d.belum]])}}],
  ['pegawai','🪪 Presensi pegawai',function(d){return {b:perc(d,'Kehadiran pegawai'),r:hdk(d,['hadir','izin','sakit','dinas','dl','alpa'])}}],
