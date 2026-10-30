@@ -361,6 +361,7 @@ var APPS=[
  {k:'pra',n:'CERDAS',s:'Center for Educational Review, Development, and Academic Supervision',d:'',m:'Praobservasi',p:'M6 3h9l4 4v14H6zM9 12h7M9 16h7'},
  {k:'obs',h:1,n:'Observasi Pembelajaran',d:'Supervisi pelaksanaan, umpan balik, dan tindak lanjut.',m:'Observasi',p:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z'},
  {k:'asesmen',n:'Analisis Hasil Asesmen',d:'Olah nilai asesmen, analisis ketuntasan tujuan pembelajaran, perbaikan dan pengayaan.',m:'Asesmen',p:'M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3'},
+ {k:'libra',n:'LIBRA GENIUS',s:'Layanan Informasi Buku, Referensi, dan Arsip &amp; Gerakan Edukasi, Navigasi Informasi, dan Unggulan Sumber Bacaan',d:'Perpustakaan digital cerdas: katalog buku, sirkulasi peminjaman, data anggota, pustaka digital, dan laporan perpustakaan.',m:'Perpustakaan',p:'M4 4h4v16H4zM9 4h4v16H9zM14.5 5.5l3.7-1 3 14.5-3.7 1z'},
  {k:'prestasi',n:'Prestasi Murid',d:'Data prestasi akademik dan nonakademik murid, tingkat lomba, dan capaian.',m:'Prestasi',p:'M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3'},
  {k:'sipas',n:'SIPAS SDN Lanas 1',d:'Surat masuk dan surat keluar, disposisi kepala sekolah.',m:'Surat',p:'M4 6h16v12H4zM4 7l8 6 8-6'},
  {k:'notula',n:'Notula Rapat',d:'Catatan rapat: agenda, pembahasan, keputusan, dan tindak lanjut.',m:'Notula',p:'M7 4h10a2 2 0 012 2v14l-4-2-3 2-3-2-4 2V6a2 2 0 012-2zM9 9h6M9 13h4'},
@@ -373,7 +374,7 @@ var APPS=[
  {k:'myasn',l:1,n:'My ASN',d:'Layanan mandiri data kepegawaian ASN dari BKN.',m:'My ASN',p:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-4 4-6 8-6s8 2 8 6'},
  {k:'pmm',l:1,n:'Platform Merdeka Mengajar (PMM)',d:'Pelatihan mandiri, perangkat ajar, dan komunitas belajar untuk guru.',m:'PMM',p:'M12 5C10 3.5 6.5 3.5 4 4.5v14c2.5-1 6-1 8 .5 2-1.5 5.5-1.5 8-.5v-14c-2.5-1-6-1-8 .5zM12 5v14'}
 ];
-var COL={sipas:'sky',kilat:'sun',pegawai:'teal',mekar:'lime',pra:'lav',obs:'pink',sipena:'peach',notula:'lime',prestasi:'sun',asesmen:'blue',jadwal:'teal',siduk:'blue',lentera:'mint',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
+var COL={sipas:'sky',kilat:'sun',pegawai:'teal',mekar:'lime',pra:'lav',obs:'pink',sipena:'peach',notula:'lime',libra:'mint',prestasi:'sun',asesmen:'blue',jadwal:'teal',siduk:'blue',lentera:'mint',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
 function prog(d){var s=nm(d.sudah),t=nm(d.total);return s==null||t==null?null:s+' dari '+t}
 var STATS=[['Pegawai Terdaftar','siduk',function(d){var v=d.total!=null?d.total:d.pegawai!=null?d.pegawai:d.jumlah;return v==null?null:v+' pegawai'}],['Murid Aktif','lentera',function(d){return d.aktif==null?null:d.aktif+' murid'}],['Surat Masuk / Keluar','sipas',function(d){var m=d.suratMasuk!=null?d.suratMasuk:d.masuk,k=d.suratKeluar!=null?d.suratKeluar:d.keluar;return m==null&&k==null?null:(m==null?'-':m)+' / '+(k==null?'-':k)}],['Presensi KILAT','kilat',function(d){return d.persen==null?null:d.persen+'%'}],['Progres Supervisi','pra',function(){var R=[['Perencanaan','plan'],['Praobservasi','pra'],['Observasi','obs']],n=0,h=R.map(function(r){var x=stat(r[1]),v=x?prog(x.stats):null;if(v!=null)n++;return '<div class="pg"><em>'+r[0]+'</em><strong>'+(v==null?'–':esc(v))+'</strong></div>'}).join('');return n?'<div class="pgs">'+h+'</div>':null},1],['Kehadiran Pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan Asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula Rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}],['Modul Ajar MEKAR','mekar',function(d){return d.total==null?null:d.total+' modul'}]];
 var D={};
@@ -413,7 +414,7 @@ var IB=[
 ];
 /* ===== URL BAWAAN: isi di sini agar tampil di semua perangkat ===== */
 var DEF={
- v:29, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
+ v:30, /* NAIKKAN angka ini (0 -> 1 -> 2 ...) setiap kali Anda mengubah URL bawaan di bawah, supaya semua perangkat ikut memakainya */
  urls:{
   sipas:'https://sahwanto41-rgb.github.io/Sipas-SDN-Lanas-1/',      /* URL SIPAS */
   plan:'',
@@ -421,6 +422,7 @@ var DEF={
   obs:'https://sahwanto41-rgb.github.io/Supervisi-Pembelajaran/',        /* URL Observasi */
   sipena:'https://sahwanto41-rgb.github.io/Sipena/',     /* URL SIPENA */
   notula:'https://sahwanto41-rgb.github.io/Notula-Rapat/',     /* URL Notula Rapat */
+  libra:'https://sahwanto41-rgb.github.io/Libra-Genius/',    /* URL LIBRA GENIUS */
   prestasi:'https://effulgent-fudge-c83eb5.netlify.app/',    /* URL Prestasi Murid */
   pegawai:'https://sahwanto41-rgb.github.io/SIPP_Pegawai/',    /* URL Presensi Pegawai */
   mekar:'https://sahwanto41-rgb.github.io/Mekar/',    /* URL MEKAR */
@@ -445,6 +447,7 @@ var DEF={
   obs:'https://script.google.com/macros/s/AKfycbzCvuEvzDRsNGczJMeqMs4V7izGFeq_aPF7ZAJINTu2G1HHPK0Dcp4GeG24lGIOCHXxtg/exec?aksi=stats',
   sipena:'',
   notula:'https://script.google.com/macros/s/AKfycby7lwsvumd8ruCC1VdjEEOD_U1JTvWCavG47qfMrdzpPLHk7G3z88DHoFEWJSgKUPEV/exec?aksi=statistik',
+  libra:'',
   prestasi:'',
   pegawai:'https://script.google.com/macros/s/AKfycbzT8VLzyOYRVuNUKdgBLKKqLPTIjgQpDyIWcvfB4OmLFD89rc3qOU2f1UU8hnQnuFArsA/exec?aksi=stats',
   mekar:'https://firestore.googleapis.com/v1/projects/mekar-93e28/databases/(default)/documents/statistik/ringkasan',
@@ -473,7 +476,7 @@ function ico(p){return '<svg width="24" height="24" viewBox="0 0 24 24" fill="no
 function valid(u){return /^https?:\/\//i.test(u||'')}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var OWL='<svg viewBox="0 0 96 96" aria-hidden="true"><ellipse cx="38" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="58" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="48" cy="60" rx="30" ry="29" fill="#ffd666" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="48" cy="73" rx="17" ry="14" fill="#fff3c4"/><path d="M19 58c-6 6-6 18 2 24 4-8 5-16 3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M77 58c6 6 6 18-2 24-4-8-5-16-3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><g class="eyes"><circle cx="36" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="60" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="38" cy="55" r="5" fill="#1d2b4f"/><circle cx="62" cy="55" r="5" fill="#1d2b4f"/><circle cx="39.6" cy="53" r="1.7" fill="#fff"/><circle cx="63.6" cy="53" r="1.7" fill="#fff"/></g><path d="M44 63l4 7 4-7z" fill="#ff8a5b" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="65" r="4" fill="#ff9fc0"/><circle cx="71" cy="65" r="4" fill="#ff9fc0"/><path d="M35 32v6c0 4 26 4 26 0v-6z" fill="#2c3f73" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 26L48 13l26 13-26 13z" fill="#1d2b4f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M72 27v13" stroke="#ff9fc0" stroke-width="3" stroke-linecap="round"/><circle cx="72" cy="42" r="3.2" fill="#ff9fc0"/></svg>';
-var SE=['🎖️','🎒','✉️','⚡','📝','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','🙋','🧾','📌'],NE=['🏠','🎖️','🎓','🧭','🗓️','🪪','⚡','🌸','📝','📈','🏆','✉️','🗒️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
+var SE=['🎖️','🎒','✉️','⚡','📝','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','🙋','🧾','📌'],NE=['🏠','🎖️','🎓','🧭','🗓️','🪪','⚡','🌸','📝','📈','📚','🏆','✉️','🗒️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
 var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Perencanaan matang, mengajar pun tenang.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
 function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
  $('mascot').innerHTML=OWL;$('hi').textContent='Selamat '+g+'! Siap mencerdaskan bangsa?';$('tip').textContent=TIPS[d.getDate()%TIPS.length]}
@@ -525,7 +528,7 @@ function renderRep(){
  $('repBody').innerHTML=h;
  $('repInfo').textContent=S.name+' · Tahun pelajaran '+S.year+' · '+n+' dari '+REP.length+' aplikasi sudah mengirim data · '+new Date().toLocaleString('id-ID',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
 }
-var NAV=[['Dashboard Utama','home'],['SINDUK','app:siduk'],['LENTERA MURID','app:lentera'],['SIPENA','app:sipena'],['SMART','app:jadwal'],['SIPP','app:pegawai'],['KILAT','app:kilat'],['MEKAR','app:mekar'],['Praobservasi Pembelajaran','app:pra'],['Analisis Hasil Asesmen','app:asesmen'],['Prestasi Murid','app:prestasi'],['SIPAS','app:sipas'],['Notula Rapat','app:notula'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB','app:spmb'],['Rapor Pendidikan','app:rapor'],['Rumah Pendidikan','app:rumah'],['My ASN','app:myasn'],['PMM','app:pmm'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
+var NAV=[['Dashboard Utama','home'],['SINDUK','app:siduk'],['LENTERA MURID','app:lentera'],['SIPENA','app:sipena'],['SMART','app:jadwal'],['SIPP','app:pegawai'],['KILAT','app:kilat'],['MEKAR','app:mekar'],['Praobservasi Pembelajaran','app:pra'],['Analisis Hasil Asesmen','app:asesmen'],['LIBRA GENIUS','app:libra'],['Prestasi Murid','app:prestasi'],['SIPAS','app:sipas'],['Notula Rapat','app:notula'],['TikTok Sekolah','app:tiktok'],['Buku Tamu','app:tamu'],['Kotak Saran','app:saran'],['SPMB','app:spmb'],['Rapor Pendidikan','app:rapor'],['Rumah Pendidikan','app:rumah'],['My ASN','app:myasn'],['PMM','app:pmm'],['Laporan dan Rekapitulasi','rep'],['Pengaturan','set']];
 $('nav').innerHTML=NAV.map(function(n,i){return '<button data-t="'+n[1]+'"'+(i==0?' class="on"':'')+'><span aria-hidden="true">'+NE[i]+'</span>'+n[0]+'</button>'}).join('');
 function show(v){var vv=v==='apps'?'home':v;$('v-home').dataset.sub=v==='apps'?'apps':'main';['home','rep','set'].forEach(function(x){$('v-'+x).classList.toggle('hide',x!==vv)});
  document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===v)});
