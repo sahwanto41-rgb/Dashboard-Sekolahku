@@ -82,6 +82,12 @@ h2{font-size:21px;margin:26px 0 14px;color:var(--ink);display:inline-block;paddi
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:2px 11px;border-radius:99px;background:var(--sun);color:var(--ink);border:2px solid var(--bd);width:max-content}
 .pill.ok{background:var(--mint)}
 .pill i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.app-card .st{display:flex;gap:7px;align-items:flex-start;margin:6px 0 0;min-height:2.7em;font-size:12px;line-height:1.35;font-weight:700;color:var(--ink);opacity:.92}
+.app-card .st::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;margin-top:.42em;background:#8a93ad;border:1.5px solid var(--bd)}
+.app-card .st.ok::before{background:#139a62}.app-card .st.er::before{background:#d93a3a}
+.app-card .pill.ok{display:none}
+@media (min-width:821px) and (max-width:1100px){.app{grid-template-columns:220px 1fr}aside{padding-left:18px;padding-right:22px}main{padding:18px}.apps{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}.stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}
+@media (min-width:1500px){main{padding:28px 36px}.apps{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}}
 .info{grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
 .info h3{margin:0 0 6px;font-size:18px}
 .lst{margin:6px 0 0;padding-left:18px;font-size:13.5px}.lst li{margin:3px 0}.lst small{color:var(--mut)}
@@ -164,8 +170,8 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  .app-card p{display:block;flex:1 1 auto;font-size:12px;line-height:1.35;margin:0 0 4px}
  #apps .app-card:last-child:nth-child(odd){grid-column:1/-1}
  .app-card .pill{font-size:11px;padding:1px 8px;gap:5px}
- .app-card .pill.ok{display:none}
- .app-card .sub{display:none}
+ .app-card .st{font-size:10.5px;line-height:1.3;min-height:0;margin:4px 0 0;gap:5px;overflow-wrap:anywhere}
+ .app-card .st::before{width:7px;height:7px;margin-top:.35em}
  .app-card .btn{width:100%;min-height:40px;padding:6px 8px;font-size:12.5px;margin-top:auto;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--sh)}
  .app-card .btn::after{content:"";position:absolute;inset:0;border-radius:18px}
  .app-card:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sh)}
@@ -477,11 +483,11 @@ function render(){
  document.title='Dashboard Sekolahku Cloud Based School '+S.name;
  var lg=S.logo?'<img alt="Logo sekolah" src="'+S.logo+'">':OWL;$('logoSide').innerHTML=lg;
  $('stats').innerHTML=STATS.map(function(s,i){var d=s[3]?{stats:{}}:stat(s[1]),v=d?s[2](d.stats):null;return '<div class="card stat"><i class="e" aria-hidden="true">'+SE[i]+'</i><span>'+s[0]+'</span>'+(v==null?'<b class="nc">💤 Belum terhubung</b>':fmtV(v))+'</div>'}).join('');
+ function dcard(k){var d=D[k],c=!valid(S.api[k])||!d?'nc':d.err?'er':'ok',t=dstat(k).replace(/"/g,'&quot;'),sh=c==='er'?'Data gagal diambil'+(d.why?' \u2014 '+esc(d.why.length>60?d.why.slice(0,58)+'\u2026':d.why):''):dstat(k);return '<span class="st '+c+'" title="'+t+'">'+sh+'</span>'}
  function card(a){var u=S.urls[a.k],ok=valid(u);
   return '<div class="card app-card" data-c="'+(COL[a.k]||'mint')+'"><div class="ic">'+ico(a.p)+'</div><h3>'+a.n+(a.s?'<span style="display:block;font-family:Nunito,system-ui,sans-serif;font-size:.72em;font-weight:700;line-height:1.3;margin-top:2px">'+a.s+'</span>':'')+'</h3><p>'+a.d+'</p>'+
-  '<span class="pill'+(ok?' ok':'')+'"><i></i>'+(ok?'URL tersimpan':'URL belum diisi')+'</span>'+
-  (a.l?'':'<span class="sub" style="margin:0">'+dstat(a.k)+'</span>')+
-  (ok?'<a class="btn" target="_blank" rel="noopener" href="'+esc(u)+'">'+(a.l?'BUKA TAUTAN':'BUKA APLIKASI')+'</a>':'<a class="btn" aria-disabled="true" href="#" data-set="1">ATUR URL DULU</a>')+'</div>'}
+  (ok?'':'<span class="pill"><i></i>URL belum diisi</span>')+
+  (ok?'<a class="btn" target="_blank" rel="noopener" href="'+esc(u)+'">'+(a.l?'BUKA TAUTAN':'BUKA APLIKASI')+'</a>':'<a class="btn" aria-disabled="true" href="#" data-set="1">ATUR URL DULU</a>')+(a.l?'':dcard(a.k))+'</div>'}
  $('apps').innerHTML=APPS.filter(function(a){return !a.l&&!a.h}).map(card).join('');
  $('links').innerHTML=APPS.filter(function(a){return a.l}).map(card).join('');
  $('info').innerHTML=INFO.map(function(t,i){var b=IB[i].f();return '<div class="card"><h3>'+IE[i]+' '+t+'</h3>'+(b==null?'<p class="empty">💤 '+esc(why(IB[i].ks))+'</p>':b.charAt(0)==='<'?b:'<p class="empty">'+b+'</p>')+'</div>'}).join('');
