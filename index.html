@@ -54,7 +54,7 @@ h1{font-size:var(--tt);margin:0;color:#ffd666;font-weight:800;line-height:1.12;l
 .stat b{display:block;font-size:30px;line-height:1.15;color:var(--ink)}
 .stat b.nc{font-size:15px;font-family:'Nunito',sans-serif;font-weight:800;padding-top:6px}
 .stat span{font-size:13px;font-weight:700;color:var(--ink);opacity:.85;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.stat b small{font:800 14px/1 'Nunito',system-ui,sans-serif;margin-left:6px;opacity:.85}
+.stat b small{font:800 14px/1 'Nunito',system-ui,sans-serif;margin-left:6px;opacity:.85} .stat .pgs{padding-top:4px} .stat .pg{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;line-height:1.55} .stat .pg em{font-style:normal;font-weight:700;opacity:.85} .stat .pg strong{font-weight:800;white-space:nowrap}
 h2{font-size:21px;margin:26px 0 14px;color:var(--ink);display:inline-block;padding:0 6px;background:linear-gradient(transparent 58%,var(--sun) 58%)}
 .apps{grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
 .app-card{display:flex;flex-direction:column;gap:8px}
@@ -154,7 +154,7 @@ ol.g{padding-left:20px;font-size:14px}ol.g li{margin:6px 0}
  .stat b{font-size:24px}
  .stat b.nc{font-size:12.5px;padding-top:2px;line-height:1.25}
  .stat span{font-size:12px;line-height:1.25;white-space:normal}
- .stat b small{font-size:12px;margin-left:4px}
+ .stat b small{font-size:12px;margin-left:4px} .stat .pg{font-size:11.5px;gap:6px}
  /* kartu aplikasi: kotak 2 kolom ala layar utama HP, seluruh kotak bisa diketuk */
  .grid{gap:12px}
  .apps{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -369,7 +369,7 @@ var APPS=[
 ];
 var COL={sipas:'sky',kilat:'sun',pegawai:'teal',mekar:'lime',pra:'lav',obs:'pink',sipena:'peach',notula:'lime',prestasi:'sun',asesmen:'blue',jadwal:'teal',siduk:'blue',lentera:'mint',tiktok:'pink',tamu:'peach',saran:'sun',spmb:'lime',rapor:'sky',rumah:'mint',myasn:'teal',pmm:'lav'};
 function prog(d){var s=nm(d.sudah),t=nm(d.total);return s==null||t==null?null:s+' dari '+t}
-var STATS=[['Pegawai Terdaftar','siduk',function(d){var v=d.total!=null?d.total:d.pegawai!=null?d.pegawai:d.jumlah;return v==null?null:v+' pegawai'}],['Murid Aktif','lentera',function(d){return d.aktif==null?null:d.aktif+' murid'}],['Surat Masuk / Keluar','sipas',function(d){var m=d.suratMasuk!=null?d.suratMasuk:d.masuk,k=d.suratKeluar!=null?d.suratKeluar:d.keluar;return m==null&&k==null?null:(m==null?'-':m)+' / '+(k==null?'-':k)}],['Presensi KILAT','kilat',function(d){return d.persen==null?null:d.persen+'%'}],['Progres Perencanaan','plan',function(d){return prog(d)}],['Progres Praobservasi','pra',function(d){return prog(d)}],['Progres Observasi','obs',function(d){return prog(d)}],['Kehadiran Pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan Asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula Rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}],['Modul Ajar MEKAR','mekar',function(d){return d.total==null?null:d.total+' modul'}]];
+var STATS=[['Pegawai Terdaftar','siduk',function(d){var v=d.total!=null?d.total:d.pegawai!=null?d.pegawai:d.jumlah;return v==null?null:v+' pegawai'}],['Murid Aktif','lentera',function(d){return d.aktif==null?null:d.aktif+' murid'}],['Surat Masuk / Keluar','sipas',function(d){var m=d.suratMasuk!=null?d.suratMasuk:d.masuk,k=d.suratKeluar!=null?d.suratKeluar:d.keluar;return m==null&&k==null?null:(m==null?'-':m)+' / '+(k==null?'-':k)}],['Presensi KILAT','kilat',function(d){return d.persen==null?null:d.persen+'%'}],['Progres Supervisi','pra',function(){var R=[['Perencanaan','plan'],['Praobservasi','pra'],['Observasi','obs']],n=0,h=R.map(function(r){var x=stat(r[1]),v=x?prog(x.stats):null;if(v!=null)n++;return '<div class="pg"><em>'+r[0]+'</em><strong>'+(v==null?'–':esc(v))+'</strong></div>'}).join('');return n?'<div class="pgs">'+h+'</div>':null},1],['Kehadiran Pegawai','pegawai',function(d){return d.persen==null?null:d.persen+'%'}],['Ketuntasan Asesmen','asesmen',function(d){return d.persen==null?null:d.persen+'%'}],['Notula Rapat','notula',function(d){return d.total==null?null:d.total+' rapat'}],['Modul Ajar MEKAR','mekar',function(d){return d.total==null?null:d.total+' modul'}]];
 var D={};
 function load(){APPS.forEach(function(a){var u=S.api[a.k];if(!valid(u)){delete D[a.k];return}
  var c=window.AbortController?new AbortController():null,tm=c?setTimeout(function(){c.abort()},15000):0;
@@ -467,7 +467,7 @@ function ico(p){return '<svg width="24" height="24" viewBox="0 0 24 24" fill="no
 function valid(u){return /^https?:\/\//i.test(u||'')}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var OWL='<svg viewBox="0 0 96 96" aria-hidden="true"><ellipse cx="38" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="58" cy="90" rx="8" ry="3.5" fill="#ff8a5b"/><ellipse cx="48" cy="60" rx="30" ry="29" fill="#ffd666" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="48" cy="73" rx="17" ry="14" fill="#fff3c4"/><path d="M19 58c-6 6-6 18 2 24 4-8 5-16 3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M77 58c6 6 6 18-2 24-4-8-5-16-3-24z" fill="#f4b942" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><g class="eyes"><circle cx="36" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="60" cy="54" r="11" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><circle cx="38" cy="55" r="5" fill="#1d2b4f"/><circle cx="62" cy="55" r="5" fill="#1d2b4f"/><circle cx="39.6" cy="53" r="1.7" fill="#fff"/><circle cx="63.6" cy="53" r="1.7" fill="#fff"/></g><path d="M44 63l4 7 4-7z" fill="#ff8a5b" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="65" r="4" fill="#ff9fc0"/><circle cx="71" cy="65" r="4" fill="#ff9fc0"/><path d="M35 32v6c0 4 26 4 26 0v-6z" fill="#2c3f73" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 26L48 13l26 13-26 13z" fill="#1d2b4f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M72 27v13" stroke="#ff9fc0" stroke-width="3" stroke-linecap="round"/><circle cx="72" cy="42" r="3.2" fill="#ff9fc0"/></svg>';
-var SE=['🎖️','🎒','✉️','⚡','📋','💬','📝','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','🙋','🧾','📌'],NE=['🏠','🎖️','🎓','🧭','🗓️','🪪','⚡','🌸','📝','📈','🏆','✉️','🗒️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
+var SE=['🎖️','🎒','✉️','⚡','📝','🪪','📈','🗒️','🌸'],IE=['📢','🗓️','🙋','🧾','📌'],NE=['🏠','🎖️','🎓','🧭','🗓️','🪪','⚡','🌸','📝','📈','🏆','✉️','🗒️','🎵','📖','💬','🎓','📑','🏫','🪪','📚','📊','⚙️'];
 var TIPS=['Satu klik, semua aplikasi sekolah ada di sini.','Perencanaan matang, mengajar pun tenang.','Presensi rapi, hati tenang, kopi pun nikmat.','Kertas boleh menumpuk, data digital jangan sampai hilang.','Pahlawan tanpa tanda jasa juga butuh rekap otomatis.'];
 function hero(){var d=new Date(),h=d.getHours(),g=h<4?'malam':h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
  $('mascot').innerHTML=OWL;$('hi').textContent='Selamat '+g+'! Siap mencerdaskan bangsa?';$('tip').textContent=TIPS[d.getDate()%TIPS.length]}
@@ -476,7 +476,7 @@ function render(){
  $('dt').textContent=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
  document.title='Dashboard Sekolahku Cloud Based School '+S.name;
  var lg=S.logo?'<img alt="Logo sekolah" src="'+S.logo+'">':OWL;$('logoSide').innerHTML=lg;
- $('stats').innerHTML=STATS.map(function(s,i){var d=stat(s[1]),v=d?s[2](d.stats):null;return '<div class="card stat"><i class="e" aria-hidden="true">'+SE[i]+'</i><span>'+s[0]+'</span>'+(v==null?'<b class="nc">💤 Belum terhubung</b>':fmtV(v))+'</div>'}).join('');
+ $('stats').innerHTML=STATS.map(function(s,i){var d=s[3]?{stats:{}}:stat(s[1]),v=d?s[2](d.stats):null;return '<div class="card stat"><i class="e" aria-hidden="true">'+SE[i]+'</i><span>'+s[0]+'</span>'+(v==null?'<b class="nc">💤 Belum terhubung</b>':fmtV(v))+'</div>'}).join('');
  function card(a){var u=S.urls[a.k],ok=valid(u);
   return '<div class="card app-card" data-c="'+(COL[a.k]||'mint')+'"><div class="ic">'+ico(a.p)+'</div><h3>'+a.n+(a.s?'<span style="display:block;font-family:Nunito,system-ui,sans-serif;font-size:.72em;font-weight:700;line-height:1.3;margin-top:2px">'+a.s+'</span>':'')+'</h3><p>'+a.d+'</p>'+
   '<span class="pill'+(ok?' ok':'')+'"><i></i>'+(ok?'URL tersimpan':'URL belum diisi')+'</span>'+
@@ -487,7 +487,7 @@ function render(){
  $('info').innerHTML=INFO.map(function(t,i){var b=IB[i].f();return '<div class="card"><h3>'+IE[i]+' '+t+'</h3>'+(b==null?'<p class="empty">💤 '+esc(why(IB[i].ks))+'</p>':b.charAt(0)==='<'?b:'<p class="empty">'+b+'</p>')+'</div>'}).join('');
  renderRep();
 }
-function fmtV(v){v=String(v).replace(/(\d)\.(\d)/g,'$1,$2');var m=v.match(/^([\d,]+%?)\s+([A-Za-z]+)$/);return m?'<b>'+esc(m[1])+'<small>'+esc(m[2])+'</small></b>':'<b>'+esc(v)+'</b>'}
+function fmtV(v){if(typeof v==='string'&&v.charAt(0)==='<')return v;v=String(v).replace(/(\d)\.(\d)/g,'$1,$2');var m=v.match(/^([\d,]+%?)\s+([A-Za-z]+)$/);return m?'<b>'+esc(m[1])+'<small>'+esc(m[2])+'</small></b>':'<b>'+esc(v)+'</b>'}
 function nm(v){if(v==null||v==='')return null;var n=Number(v);return isFinite(n)?n:null}
 function cap(t){return t.charAt(0).toUpperCase()+t.slice(1)}
 function bar(p,l){p=Math.max(0,Math.min(100,p));var c=p>=75?'':p>=50?' mid':' lo';
